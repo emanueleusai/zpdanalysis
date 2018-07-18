@@ -1,0 +1,52 @@
+[config-begin]
+	Outputdir  = set_new_output_directory
+	Outputfile = skim.root
+	Lumi = 3000
+	Maxchilds = 6
+	Samplesdir = output/
+[config-end]
+
+[inputfiles-begin]
+RS_Gluon_5_TeV1_ntuple.root, RS Gluon 5 TeV, 633, 1000, 399989,4, true 
+RS_Gluon_5_TeV3_ntuple.root, RS Gluon 5 TeV, 633, 1000, 399989,4, true 
+RS_Gluon_5_TeV5_ntuple.root, RS Gluon 5 TeV, 633, 1000, 399989,4, true 
+RS_Gluon_5_TeV6_ntuple.root, RS Gluon 5 TeV, 633, 1000, 399989,4, true 
+RS_Gluon_5_TeV4_ntuple.root, RS Gluon 5 TeV, 633, 1000, 399989,4, true 
+RS_Gluon_5_TeV0_ntuple.root, RS Gluon 5 TeV, 633, 1000, 399989,4, true 
+RS_Gluon_5_TeV2_ntuple.root, RS Gluon 5 TeV, 633, 1000, 399989,4, true 
+RS_Gluon_5_TeV8_ntuple.root, RS Gluon 5 TeV, 633, 1000, 399989,4, true 
+RS_Gluon_5_TeV7_ntuple.root, RS Gluon 5 TeV, 633, 1000, 399989,4, true 
+RS_Gluon_5_TeV10_ntuple.root, RS Gluon 5 TeV, 633, 1000, 399989,4, true 
+RS_Gluon_5_TeV9_ntuple.root, RS Gluon 5 TeV, 633, 1000, 399989,4, true 
+[inputfiles-end]
+RS_Gluon_2_TeV2_ntuple.root, RS Gluon 2 TeV, 630, 1000, 399988,1, true 
+RS_Gluon_2_TeV1_ntuple.root, RS Gluon 2 TeV, 630, 1000, 399988,1, true 
+RS_Gluon_2_TeV5_ntuple.root, RS Gluon 2 TeV, 630, 1000, 399988,1, true 
+RS_Gluon_2_TeV4_ntuple.root, RS Gluon 2 TeV, 630, 1000, 399988,1, true 
+RS_Gluon_2_TeV3_ntuple.root, RS Gluon 2 TeV, 630, 1000, 399988,1, true 
+RS_Gluon_2_TeV7_ntuple.root, RS Gluon 2 TeV, 630, 1000, 399988,1, true 
+RS_Gluon_2_TeV9_ntuple.root, RS Gluon 2 TeV, 630, 1000, 399988,1, true 
+RS_Gluon_2_TeV6_ntuple.root, RS Gluon 2 TeV, 630, 1000, 399988,1, true 
+RS_Gluon_2_TeV0_ntuple.root, RS Gluon 2 TeV, 630, 1000, 399988,1, true 
+RS_Gluon_6_TeV13_ntuple.root, RS Gluon 6 TeV, 634, 1000, 399987,5, true 
+RS_Gluon_2_TeV8_ntuple.root, RS Gluon 2 TeV, 630, 1000, 399988,1, true 
+RS_Gluon_2_TeV11_ntuple.root, RS Gluon 2 TeV, 630, 1000, 399988,1, true 
+RS_Gluon_6_TeV14_ntuple.root, RS Gluon 6 TeV, 634, 1000, 399987,5, true 
+RS_Gluon_6_TeV15_ntuple.root, RS Gluon 6 TeV, 634, 1000, 399987,5, true 
+RS_Gluon_6_TeV16_ntuple.root, RS Gluon 6 TeV, 634, 1000, 399987,5, true 
+RS_Gluon_6_TeV18_ntuple.root, RS Gluon 6 TeV, 634, 1000, 399987,5, true 
+RS_Gluon_2_TeV10_ntuple.root, RS Gluon 2 TeV, 630, 1000, 399988,1, true 
+RS_Gluon_6_TeV12_ntuple.root, RS Gluon 6 TeV, 634, 1000, 399987,5, true 
+RS_Gluon_6_TeV20_ntuple.root, RS Gluon 6 TeV, 634, 1000, 399987,5, true 
+RS_Gluon_6_TeV22_ntuple.root, RS Gluon 6 TeV, 634, 1000, 399987,5, true 
+RS_Gluon_6_TeV17_ntuple.root, RS Gluon 6 TeV, 634, 1000, 399987,5, true 
+RS_Gluon_6_TeV19_ntuple.root, RS Gluon 6 TeV, 634, 1000, 399987,5, true 
+RS_Gluon_6_TeV24_ntuple.root, RS Gluon 6 TeV, 634, 1000, 399987,5, true 
+RS_Gluon_6_TeV21_ntuple.root, RS Gluon 6 TeV, 634, 1000, 399987,5, true 
+RS_Gluon_6_TeV23_ntuple.root, RS Gluon 6 TeV, 634, 1000, 399987,5, true 
+[inputfiles-end]
+RS_Gluon_3_TeV1_ntuple.root, RS Gluon 3 TeV, 631, 1000, 399992,2, true 
+RS_Gluon_4_TeV2_ntuple.root, RS Gluon 4 TeV, 632, 1000, 197995,3, true 
+RS_Gluon_4_TeV3_ntuple.root, RS Gluon 4 TeV, 632, 1000, 201995,3, true 
+RS_Gluon_3_TeV0_ntuple.root, RS Gluon 3 TeV, 631, 1000, 399992,2, true 
+[inputfiles-end]
