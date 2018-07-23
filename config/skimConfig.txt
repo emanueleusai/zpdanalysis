@@ -48,7 +48,9 @@ $    Samplesdir = root://cms-xrd-global.cern.ch//store/group/upgrade/delphes_out
 $  Samplesdir =  root://cmseos.fnal.gov//store/user/snowmass/noreplica/YR_Delphes/Delphes342pre15/
 
 $ Samplesdir = root://dcache-cms-xrootd.desy.de//pnfs/desy.de/cms/tier2/store/group/upgrade/delphes_output/YR_Delphes/Delphes342pre15/
- Samplesdir = root://dcache-cms-xrootd.desy.de//pnfs/desy.de/cms/tier2/store/group/upgrade/delphes_output/YR_Delphes/Delphes342pre15_hadd/
+$ Samplesdir = root://dcache-cms-xrootd.desy.de//pnfs/desy.de/cms/tier2/store/group/upgrade/delphes_output/YR_Delphes/Delphes342pre15_hadd/
+Samplesdir = root://dcache-cms-xrootd.desy.de//pnfs/desy.de/cms/tier2/store/group/upgrade/delphes_output/YR_Delphes/Delphes342pre14/
+
 $ Samplesdir = root://cms-xrd-global.cern.ch//store/group/upgrade/delphes_output/YR_Delphes/Delphes342pre15_hadd/
  $  Samplesdir = root://dcache-cms-xrootd.desy.de/pnfs/desy.de/cms/tier2/store/group/upgrade/delphes_output/YR_Delphes/Delphes342pre15
  
@@ -88,13 +90,19 @@ $ root://cms-xrd-global.cern.ch//store/group/upgrade/delphes_output/YR_Delphes/D
 $RSGluonToTTbar_M2000_TuneCUEP8M1_14TeV_pythia8_200PU/ , RS Gluon 2 TeV , 630 , 1000 , 399988 , 1 , true
 $RSGluonToTTbar_M5000_TuneCUEP8M1_14TeV_pythia8_200PU/ , RS Gluon 5 TeV , 633 , 1000 , 399989 , 4 , true
 $RSGluonToTTbar_M6000_TuneCUEP8M1_14TeV_pythia8_200PU/ , RS Gluon 6 TeV , 634 , 1000 , 399987 , 5 , true
-$TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_200PU/ , TTbar , 635 , 21270 , auto , 6
+$TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_200PU/ , TTbar , 635 , 21270 , 12769661 , 6
+$21270  523.242 valoew inserito in mcm e' gia' moltiplicato per eff
+
+
+$fnal
+
+$DYJets_incl_MLL-50_TuneCUETP8M1_14TeV-madgraphMLM-pythia8_200PU/ , DY , 637 , 5711000 , auto , 8
 
 $hadd
 
-RSGluonToTTbar_M3000_TuneCUEP8M1_14TeV_pythia8_200PU/ , RS Gluon 3 TeV , 631 , 1000 , 399992 , 2 , true
-RSGluonToTTbar_M4000_TuneCUEP8M1_14TeV_pythia8_200PU/RSGluonToTTbar_M4000_TuneCUEP8M1_14TeV_pythia8_200PU_1.root , RS Gluon 4 TeV , 632 , 1000 , 197995 , 3 , true
-RSGluonToTTbar_M4000_TuneCUEP8M1_14TeV_pythia8_200PU/RSGluonToTTbar_M4000_TuneCUEP8M1_14TeV_pythia8_200PU_2.root , RS Gluon 4 TeV , 632 , 1000 , 201995 , 3 , true
+$RSGluonToTTbar_M3000_TuneCUEP8M1_14TeV_pythia8_200PU/ , RS Gluon 3 TeV , 631 , 1000 , 399992 , 2 , true
+$RSGluonToTTbar_M4000_TuneCUEP8M1_14TeV_pythia8_200PU/RSGluonToTTbar_M4000_TuneCUEP8M1_14TeV_pythia8_200PU_1.root , RS Gluon 4 TeV , 632 , 1000 , 197995 , 3 , true
+$RSGluonToTTbar_M4000_TuneCUEP8M1_14TeV_pythia8_200PU/RSGluonToTTbar_M4000_TuneCUEP8M1_14TeV_pythia8_200PU_2.root , RS Gluon 4 TeV , 632 , 1000 , 201995 , 3 , true
 $RSGluonToTTbar_M4000_TuneCUEP8M1_14TeV_pythia8_200PU/RSGluonToTTbar_M4000_TuneCUEP8M1_14TeV_pythia8_200PU_3.root , RS Gluon 4_3 TeV , 632 , 1000 , auto , 3 , true
 $QCD_Pt-1000toInf_TuneCUETP8M1_14TeV_pythia8_200PU/ , QCD1000 , 636 , 1000 , auto , 7
 $QCD_Pt-120to170_TuneCUETP8M1_14TeV_pythia8_200PU/ , QCD0120 , 636 , 1000 , auto , 7
@@ -103,7 +111,9 @@ $QCD_Pt-50to80_TuneCUETP8M1_14TeV_pythia8_200PU/ , QCD0050 , 636 , 1000 , auto ,
 $QCD_Pt-600to800_TuneCUETP8M1_14TeV_pythia8_200PU/ , QCD0600 , 636 , 1000 , auto , 7
 $QCD_Pt-80to120_TuneCUETP8M1_14TeV_pythia8_200PUv , QCD0080 , 636 , 1000 , auto , 7
 
-
+$14
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_200PU/ , QCD , 636 , 1253000 , 19713175 , 7
+$109512.2
 
 $ The last entry is an example for running over all input files in a directory
 

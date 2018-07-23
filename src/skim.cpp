@@ -45,6 +45,7 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 //	d_ana::dBranchHandler<HepMCEvent>  event(tree(),"Event");
 //	d_ana::dBranchHandler<GenParticle> genpart(tree(),"Particle");
 //	d_ana::dBranchHandler<Jet>         genjet(tree(),"GenJet");
+	d_ana::dBranchHandler<Weight>      weights(tree(),"Weight");
 	d_ana::dBranchHandler<Jet>         jets(tree(),"JetPUPPIAK8");
 //	d_ana::dBranchHandler<Muon>        muontight(tree(),"MuonTight");
 //	d_ana::dBranchHandler<Muon>        muonloose(tree(),"MuonLoose");
@@ -107,6 +108,16 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 	Double_t zp_pt = 0;
 	Double_t zp_btag = 0;
 
+	Double_t weight = 1;
+
+	// Double_t met = 0;
+	// Double_t met_eta = 0;
+	// Double_t met_phi = 0;
+
+	// Double_t met_t = 0;
+	// Double_t met_p = 0;
+
+	myskim->Branch("weight",&weight);
 
 	myskim->Branch("top1_pt",&top1_pt);
 	myskim->Branch("top1_eta",&top1_eta);
@@ -186,6 +197,8 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 		zp_pt = 0;
 		zp_btag = 0;
 
+		weight = 1;
+
 		//std::cout<<jets.size()<<std::endl;
 		// for (int i =0; i<jets.size(); i++)
 		// {
@@ -201,6 +214,7 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 			jets.at(1)->SoftDroppedJet.M()<50.0 
 			) continue;
 
+		weight = weights.at(0)->Weight;
 		top1_pt = jets.at(0)->PT;
 		top1_eta = jets.at(0)->Eta;
 		top1_phi = jets.at(0)->Phi;
