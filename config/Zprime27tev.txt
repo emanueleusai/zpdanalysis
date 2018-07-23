@@ -1,0 +1,41 @@
+[config-begin]
+
+    Outputdir  = output
+    Outputfile = outputfile.root
+    Lumi       = 3000  
+    Testmode   = false
+    Maxchilds  = 6
+    Samplesdir = /mnt/hadoop/users/ssagir/phase2/27tev
+    RunOnOutputOnly = false
+
+[config-end]
+
+
+
+[inputfiles-begin]
+
+2_0PU.root,  2TeV0PU,  1, 1,  auto, 1, true
+$4_0PU.root,  4TeV0PU,  1, 1,  auto, 1, true
+$6_0PU.root,  6TeV0PU,  1, 1,  auto, 1, true
+$8_0PU.root,  8TeV0PU,  1, 1,  auto, 1, true
+$10_0PU.root, 10TeV0PU, 1, 1,  auto, 1, true
+
+$2_200PU.root,  2TeV200PU,  1, 1,  auto, 1, true
+$4_200PU.root,  4TeV200PU,  1, 1,  auto, 1, true
+$6_200PU.root,  6TeV200PU,  1, 1,  auto, 1, true
+$8_200PU.root,  8TeV200PU,  1, 1,  auto, 1, true
+$10_200PU.root, 10TeV200PU, 1, 1,  auto, 1, true
+
+$2_400PU.root,  2TeV400PU,  1, 1,  auto, 1, true
+$4_400PU.root,  4TeV400PU,  1, 1,  auto, 1, true
+$6_400PU.root,  6TeV400PU,  1, 1,  auto, 1, true
+$8_400PU.root,  8TeV400PU,  1, 1,  auto, 1, true
+$10_400PU.root, 10TeV400PU, 1, 1,  auto, 1, true
+
+$2_800PU.root,  2TeV800PU,  1, 1,  auto, 1, true
+$4_800PU.root,  4TeV800PU,  1, 1,  auto, 1, true
+$6_800PU.root,  6TeV800PU,  1, 1,  auto, 1, true
+$8_800PU.root,  8TeV800PU,  1, 1,  auto, 1, true
+$10_800PU.root, 10TeV800PU, 1, 1,  auto, 1, true
+
+[inputfiles-end]
