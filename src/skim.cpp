@@ -214,7 +214,7 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 			jets.at(1)->SoftDroppedJet.M()<50.0 
 			) continue;
 
-		weight = weights.at(0)->Weight;
+		//weight = weights.at(0)->Weight;
 		top1_pt = jets.at(0)->PT;
 		top1_eta = jets.at(0)->Eta;
 		top1_phi = jets.at(0)->Phi;

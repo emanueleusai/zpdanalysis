@@ -54,7 +54,7 @@ void metskim::analyze(size_t childid /* this info can be used for printouts */){
 	d_ana::dBranchHandler<MissingET>   gen_mets(tree(),"GenMissingET");
 	d_ana::dBranchHandler<MissingET>   genpileup_mets(tree(),"GenPileUpMissingET");
 
-	d_ana::dBranchHandler<ScalarET>    hts(tree(),"ScalarHT");
+	d_ana::dBranchHandler<ScalarHT>    hts(tree(),"ScalarHT");
 	d_ana::dBranchHandler<Vertex>      vertices(tree(),"Vertex");
 
 	d_ana::dBranchHandler<Jet>      jets(tree(),"Jet");
@@ -96,24 +96,24 @@ void metskim::analyze(size_t childid /* this info can be used for printouts */){
 	 */
 	TTree* myskim=addTree();
 
-	TLorentzVector met();
+	TLorentzVector met;
 	Double_t met_t = 0;
 	Double_t met_p = 0;
-	TLorentzVector puppi_met();
+	TLorentzVector puppi_met;
 	Double_t puppi_met_t = 0;
 	Double_t puppi_met_p = 0;
-	TLorentzVector gen_met();
+	TLorentzVector gen_met;
 	Double_t gen_met_t = 0;
 	Double_t gen_met_p = 0;
-	TLorentzVector genpileup_met();
+	TLorentzVector genpileup_met;
 	Double_t genpileup_met_t = 0;
 	Double_t genpileup_met_p = 0;
 
-	TLorentzVector l1();
-	TLorentzVector l2();
-	TLorentzVector median();
-	TLorentzVector weighted_median();
-	TLorentzVector z();
+	TLorentzVector l1;
+	TLorentzVector l2;
+	TLorentzVector median;
+	TLorentzVector weighted_median;
+	TLorentzVector z;
 
 	Double_t npv = 0;
 	Double_t njet = 0;
@@ -122,13 +122,13 @@ void metskim::analyze(size_t childid /* this info can be used for printouts */){
 	Double_t ht = 0;
 	Double_t rho = 0;
 
-	TLorentzVector jetsum();
+	TLorentzVector jetsum;
 	Double_t jetsum_t = 0;
 	Double_t jetsum_p = 0;
-	TLorentzVector puppi_jetsum();
+	TLorentzVector puppi_jetsum;
 	Double_t puppi_jetsum_t = 0;
 	Double_t puppi_jetsum_p = 0;
-	TLorentzVector gen_jetsum();
+	TLorentzVector gen_jetsum;
 	Double_t gen_jetsum_t = 0;
 	Double_t gen_jetsum_p = 0;
 
@@ -208,7 +208,7 @@ void metskim::analyze(size_t childid /* this info can be used for printouts */){
 		ngenjet = 0;
 		ht = 0;
 		rho = 0;
-		jetsum
+		jetsum.SetXYZT(0,0,0,0);
 		jetsum_t = 0;
 		jetsum_p = 0;
 		puppi_jetsum.SetXYZT(0,0,0,0);
@@ -314,7 +314,7 @@ void metskim::postProcess(){
 		 */
 
 		// delete myplot2;
-	}
+	
 
 	/*
 	 * do the extraction here.
