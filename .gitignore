@@ -1,4 +1,9 @@
 *.root
 skim
 metskim
+DAnalysis
 .*
+*.pdf
+*.pyc
+gen
+
