@@ -4,6 +4,7 @@ import sys
 import ROOT
 from ROOT import TFile,TCanvas,gROOT,gStyle,TLegend,TGraphAsymmErrors,THStack,TIter,kRed,kYellow,kGray,kBlack,TLatex,kOrange,kAzure,TLine,kWhite,kBlue,kTRUE,kFALSE,TColor
 import CMS_lumi
+import math
 ROOT.gROOT.SetBatch()
 
 hexcolor=["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
@@ -427,26 +428,49 @@ def make_ratioplot(name, ttbar_file=0, qcd_file=0, signal_files=[], histo=0,rebi
       sys_diff_qcd.append([])
       sys_diff_ttbar.append([])
 
-    #adding stat uncertainties
-    for imtt in range(1,ttbar_histo.GetNbinsX()+1):
-      sys_diff_ttbar[imtt-1].append(ttbar_histo.GetBinError(imtt))
-      sys_diff_ttbar[imtt-1].append(-ttbar_histo.GetBinError(imtt))
-      sys_diff_qcd[imtt-1].append(qcd_histo.GetBinError(imtt))
-      sys_diff_qcd[imtt-1].append(-qcd_histo.GetBinError(imtt))
+    #adding stat uncertainties <--removed
+    # for imtt in range(1,ttbar_histo.GetNbinsX()+1):
+    #   sys_diff_ttbar[imtt-1].append(ttbar_histo.GetBinError(imtt))
+    #   sys_diff_ttbar[imtt-1].append(-ttbar_histo.GetBinError(imtt))
+    #   sys_diff_qcd[imtt-1].append(qcd_histo.GetBinError(imtt))
+    #   sys_diff_qcd[imtt-1].append(-qcd_histo.GetBinError(imtt))
     #adding flat uncertainties
     for imtt in range(1,ttbar_histo.GetNbinsX()+1):
-      #3% trigger
-      sys_diff_ttbar[imtt-1].append(0.03*ttbar_histo.GetBinContent(imtt))
-      sys_diff_ttbar[imtt-1].append(-0.03*ttbar_histo.GetBinContent(imtt))
-      #2.7% lumi
-      sys_diff_ttbar[imtt-1].append(0.023*ttbar_histo.GetBinContent(imtt))
-      sys_diff_ttbar[imtt-1].append(-0.023*ttbar_histo.GetBinContent(imtt))
-      #15% ttbar
-      #sys_diff_ttbar[imtt-1].append(0.15*ttbar_histo.GetBinContent(imtt))
-      #sys_diff_ttbar[imtt-1].append(-0.15*ttbar_histo.GetBinContent(imtt))
-      #2.8% QCD
-      sys_diff_qcd[imtt-1].append(0.028*qcd_histo.GetBinContent(imtt))
-      sys_diff_qcd[imtt-1].append(-0.028*qcd_histo.GetBinContent(imtt))
+      #ttbar
+      for i in [2.4,#pdf
+                10.0,#mu
+                3.0,#xsec
+                6.0,#toppt
+                1.0,#lumi
+                3.5,#jec
+                3.0,#jer
+                10.0,#btag
+                #3.0,#trig
+                10.0,#toptag
+                3.0]:#pileup
+         sys_diff_ttbar[imtt-1].append(i/100.0*ttbar_histo.GetBinContent(imtt))
+         sys_diff_ttbar[imtt-1].append(-i/100.0*ttbar_histo.GetBinContent(imtt))
+      closureunc=5.0
+      # if '1b' in histo:
+      #   closureunc=5.0
+      # elif '2b' in histo:
+      #   closureunc=10.0
+      for i in [2.0,#modmass
+                closureunc]:#closure
+         sys_diff_qcd[imtt-1].append(i/100.0*qcd_histo.GetBinContent(imtt))
+         sys_diff_qcd[imtt-1].append(-i/100.0*qcd_histo.GetBinContent(imtt))
+      # #3% trigger
+      # sys_diff_ttbar[imtt-1].append(0.03*ttbar_histo.GetBinContent(imtt))
+      # sys_diff_ttbar[imtt-1].append(-0.03*ttbar_histo.GetBinContent(imtt))
+      # #2.7% lumi
+      # sys_diff_ttbar[imtt-1].append(0.023*ttbar_histo.GetBinContent(imtt))
+      # sys_diff_ttbar[imtt-1].append(-0.023*ttbar_histo.GetBinContent(imtt))
+      # #15% ttbar
+      # #sys_diff_ttbar[imtt-1].append(0.15*ttbar_histo.GetBinContent(imtt))
+      # #sys_diff_ttbar[imtt-1].append(-0.15*ttbar_histo.GetBinContent(imtt))
+      # #2.8% QCD
+      # sys_diff_qcd[imtt-1].append(0.028*qcd_histo.GetBinContent(imtt))
+      # sys_diff_qcd[imtt-1].append(-0.028*qcd_histo.GetBinContent(imtt))
     #combining uncertainties
     sys_tot_ttbar=[]
     sys_tot_qcd=[]
@@ -476,7 +500,7 @@ def make_ratioplot(name, ttbar_file=0, qcd_file=0, signal_files=[], histo=0,rebi
       sys_global_qcd[1]=sys_global_qcd[1]+uperr_qcd
       sys_global_ttbar[0]=sys_global_ttbar[0]+downerr_ttbar
       sys_global_ttbar[1]=sys_global_ttbar[1]+uperr_ttbar
-      nevt_global[0]=nevt_global[0]+data_histo.GetBinContent(imtt)
+      # nevt_global[0]=nevt_global[0]+data_histo.GetBinContent(imtt)
       nevt_global[1]=nevt_global[1]+qcd_histo.GetBinContent(imtt)
       nevt_global[2]=nevt_global[2]+ttbar_histo.GetBinContent(imtt)
       #print 'ttbar+qcd',math.sqrt(uperr_qcd+uperr_ttbar),math.sqrt(downerr_qcd+downerr_ttbar)
@@ -687,7 +711,7 @@ if __name__ == '__main__':
 	
 	#select steps
 	histo_factory=False
-	stacking=False
+	stacking=True
 	theta=False
 
 
@@ -706,11 +730,14 @@ if __name__ == '__main__':
 			for sel in selections:
 				for histo in plots:
 					rebin=1
+					zoom=2
 					if 'zp_m' in histo:
 						rebin=2
+					if 'pre' in sel:
+						zoom=200
 					make_ratioplot(histo+'_'+sel+'_'+str(lumi)+'_Stack', ttbar_file=files[5], qcd_file=files[6], signal_files=files[:-2], histo=histo+'_'+sel+'_'+str(lumi),rebin=rebin,minx=0,maxx=0,miny=0,maxy=0,logy=False,
 						xtitle='',ytitle='',textsizefactor=1,signal_legend=legends[:-2],outfile=outfile,signal_colors=[],
-						ttbar_legend='t#bar{t}',qcd_legend='NTMJ',dosys=False,docms=True,legendtitle='',signal_zoom=2)
+						ttbar_legend='t#bar{t}',qcd_legend='NTMJ',dosys=True,docms=True,legendtitle='',signal_zoom=zoom)
 		
 
 		genfiles=['output/genrsg2.root','output/genrsg3.root','output/genrsg4.root','output/genrsg5.root','output/genrsg6.root']
