@@ -58,10 +58,15 @@ void metskim::analyze(size_t childid /* this info can be used for printouts */){
 	d_ana::dBranchHandler<Vertex>      vertices(tree(),"Vertex");
 
 	d_ana::dBranchHandler<Jet>      jets(tree(),"Jet");
+	d_ana::dBranchHandler<Rho>      rhos(tree(),"Rho");
 	d_ana::dBranchHandler<Jet>      puppi_jets(tree(),"JetPUPPI");
 	d_ana::dBranchHandler<Jet>      gen_jets(tree(),"GenJet");
 
 	d_ana::dBranchHandler<Weight>      weights(tree(),"Weight");
+	d_ana::dBranchHandler<GenParticle> genpart(tree(),"Particle");
+
+	d_ana::dBranchHandler<Electron> es(tree(),"Electron");
+	d_ana::dBranchHandler<Muon> mus(tree(),"Muon");
 
 
 	/* ==SKIM==
@@ -112,7 +117,6 @@ void metskim::analyze(size_t childid /* this info can be used for printouts */){
 	TLorentzVector l1;
 	TLorentzVector l2;
 	TLorentzVector median;
-	TLorentzVector weighted_median;
 	TLorentzVector z;
 
 	Double_t npv = 0;
@@ -153,7 +157,6 @@ void metskim::analyze(size_t childid /* this info can be used for printouts */){
 	myskim->Branch("l1",&l1);
 	myskim->Branch("l2",&l2);
 	myskim->Branch("median",&median);
-	myskim->Branch("weighted_median",&weighted_median);
 	myskim->Branch("z",&z);
 
 	myskim->Branch("npv",&npv);
@@ -200,7 +203,6 @@ void metskim::analyze(size_t childid /* this info can be used for printouts */){
 		l1.SetXYZT(0,0,0,0);
 		l2.SetXYZT(0,0,0,0);
 		median.SetXYZT(0,0,0,0);
-		weighted_median.SetXYZT(0,0,0,0);
 		z.SetXYZT(0,0,0,0);
 		npv = 0;
 		njet = 0;
@@ -217,25 +219,80 @@ void metskim::analyze(size_t childid /* this info can be used for printouts */){
 		gen_jetsum.SetXYZT(0,0,0,0);
 		gen_jetsum_t = 0;
 		gen_jetsum_p = 0;
+		weight = 1;
 
-		/*
-		 * Begin the event-by-event analysis
-		 */
-		// for(size_t i=0;i<elecs.size();i++){
-		// 	histo->Fill(elecs.at(i)->PT);
-		// }
+		//skim
+		if (es.size()<2 && mus.size()<2) continue;
+		if (es.size()>1 && mus.size()<2)
+		{
+			l1=es.at(0)->P4();
+			l2=es.at(1)->P4();
+		} 
+		if (mus.size()>1 && es.size()<2)
+		{
+			l1=mus.at(0)->P4();
+			l2=mus.at(1)->P4();
+		} 
+		if (es.size()>1 && mus.size()>1)
+		{
+			float epair= (es.at(0)->P4()+es.at(1)->P4()).M();
+			float mupair= (mus.at(0)->P4()+mus.at(1)->P4()).M();
+			if (fabs(91.2-mupair)<fabs(91.2-epair))
+			{
+				l1=mus.at(0)->P4();
+				l2=mus.at(1)->P4();
+			}
+			else
+			{
+				l1=es.at(0)->P4();
+				l2=es.at(1)->P4();
+			}
+		} 
+		weight = weights.at(0)->Weight;
+		met=mets.at(0)->P4();
+		puppi_met=puppi_mets.at(0)->P4();
+		gen_met=gen_mets.at(0)->P4();
+		genpileup_met=genpileup_mets.at(0)->P4();
+		ht=hts.at(0)->HT;
+		rho=rhos.at(0)->Rho;
+		npv = vertices.size();
+		njet = jets.size();
+		npuppijet = puppi_jets.size();
+		ngenjet = gen_jets.size();
+		for (unsigned int i=0;i<jets.size();i++) jetsum+=jets.at(i)->P4();
+		for (unsigned int i=0;i<puppi_jets.size();i++) puppi_jetsum+=puppi_jets.at(i)->P4();
+		for (unsigned int i=0;i<gen_jets.size();i++) gen_jetsum+=gen_jets.at(i)->P4();
+		for (unsigned int i=0;i<genpart.size();i++)
+		{
+			if (genpart.at(i)->PID==23)
+			{
+				z=genpart.at(i)->P4();
+				break;
+			}
+		}
+		TVector3 parallel=median.Vect().Unit();
+		TVector3 transverse=median.Vect().Orthogonal();
 
-		/*
-		 * Or to fill the skim
-		 */
-		// skimmedelecs.clear();
-		// for(size_t i=0;i<elecs.size();i++){
-		// 	//flat info
-		// 	elecPt=elecs.at(i)->PT;
-		// 	if(elecs.at(i)->PT < 20) continue;
-		// 	//or objects
-		// 	skimmedelecs.push_back(*elecs.at(i));
-		// }
+		met_t = transverse.Dot(met.Vect());
+		met_p = parallel.Dot(met.Vect());
+
+		puppi_met_t = transverse.Dot(puppi_met.Vect());
+		puppi_met_p = parallel.Dot(puppi_met.Vect());
+
+		gen_met_t = transverse.Dot(gen_met.Vect());
+		gen_met_p = parallel.Dot(gen_met.Vect());
+
+		genpileup_met_t = transverse.Dot(genpileup_met.Vect());
+		genpileup_met_p = parallel.Dot(genpileup_met.Vect());
+
+		jetsum_t = transverse.Dot(jetsum.Vect());
+		jetsum_p = parallel.Dot(jetsum.Vect());
+
+		puppi_jetsum_t = transverse.Dot(puppi_jetsum.Vect());
+		puppi_jetsum_p = parallel.Dot(puppi_jetsum.Vect());
+
+		gen_jetsum_t = transverse.Dot(gen_jetsum.Vect());
+		gen_jetsum_p = parallel.Dot(gen_jetsum.Vect());
 
 		myskim->Fill();
 
