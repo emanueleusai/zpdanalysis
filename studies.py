@@ -47,11 +47,11 @@ xsecs=[
 1000,
 1000,
 21270,
-1253000
+1174000
 ]
 
 target_lumi = [
-300,1000,3000
+36,300,1000,3000
 ]
 
 selections = [
@@ -316,9 +316,14 @@ def doplots(sample):
 		for j in target_lumi:
 			hist_dict['pre'][j].fill(event)
 
+		dphi=abs(event.top1_phi-event.top2_phi)
+		if dphi>3.14159:
+			dphi=2*3.14159-dphi
 		#fill selection
 		if (event.top1_sdmass>105 and event.top1_sdmass<210 and #mass top1
 			event.top2_sdmass>105 and event.top2_sdmass<210 and #mass top2
+			event.top1_pt+event.top2_pt>1000 and dphi>2.1 and#trigger+dphi
+
 			event.top1_tau32<0.65 and event.top2_tau32<0.65): #nsub top1+top2
 			for j in target_lumi:
 				hist_dict['full'][j].fill(event)
@@ -587,6 +592,8 @@ def make_ratioplot(name, ttbar_file=0, qcd_file=0, signal_files=[], histo=0,rebi
        CMS_lumi.CMS_lumi(canvas, 2, 11)
     elif '300' in name:
        CMS_lumi.CMS_lumi(canvas, 1, 11)
+    elif '36' in name:
+       CMS_lumi.CMS_lumi(canvas, 0, 11)
 
   ###saving
   canvas.SaveAs('pdf/'+name+'.pdf')
@@ -710,9 +717,9 @@ def compare(name,file_list,name_list,legend_list,normalize=False,drawoption='hE'
 if __name__ == '__main__':
 	
 	#select steps
-	histo_factory=False
+	histo_factory=True
 	stacking=True
-	theta=False
+	theta=True
 
 
 	if histo_factory:
@@ -809,35 +816,35 @@ if __name__ == '__main__':
 					the_plot.Write(categories_names[cat]+'__'+filenames[sample])
 			template.Close()
 
-	from ROOT import TGraph
-	from array import array
-	from math import log,exp
-	x, y = array( 'd' ), array( 'd' )
-	x.append(1000)
-	x.append(1250)
-	x.append(1500)
-	x.append(2000)
-	x.append(2500)
-	x.append(3000)
-	x.append(3500)
-	x.append(4000)
-	x.append(4500)
-	x.append(5000)
+# 	from ROOT import TGraph
+# 	from array import array
+# 	from math import log,exp
+# 	x, y = array( 'd' ), array( 'd' )
+# 	x.append(1000)
+# 	x.append(1250)
+# 	x.append(1500)
+# 	x.append(2000)
+# 	x.append(2500)
+# 	x.append(3000)
+# 	x.append(3500)
+# 	x.append(4000)
+# 	x.append(4500)
+# 	x.append(5000)
 
-	y.append(log(1.3*20.05))
-	y.append(log(1.3*7.92))
-	y.append(log(1.3*3.519))
-	y.append(log(1.3*0.9528))
-	y.append(log(1.3*0.3136))
-	y.append(log(1.3*0.1289))
-	y.append(log(1.3*0.05452))
-	y.append(log(1.3*0.02807))
-	y.append(log(1.3*0.01603))
-	y.append(log(1.3*0.009095))
-#0.00960796535494
-	gr = TGraph( 10, x, y )
-	gr.Fit('pol3')
-	func=gr.GetFunction('pol3')
-	print(exp(func.Eval(5000)))
-	print(exp(func.Eval(6000)))
+# 	y.append(log(1.3*20.05))
+# 	y.append(log(1.3*7.92))
+# 	y.append(log(1.3*3.519))
+# 	y.append(log(1.3*0.9528))
+# 	y.append(log(1.3*0.3136))
+# 	y.append(log(1.3*0.1289))
+# 	y.append(log(1.3*0.05452))
+# 	y.append(log(1.3*0.02807))
+# 	y.append(log(1.3*0.01603))
+# 	y.append(log(1.3*0.009095))
+# #0.00960796535494
+# 	gr = TGraph( 10, x, y )
+# 	gr.Fit('pol3')
+# 	func=gr.GetFunction('pol3')
+# 	print(exp(func.Eval(5000)))
+# 	print(exp(func.Eval(6000)))
 

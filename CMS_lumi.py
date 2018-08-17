@@ -62,6 +62,8 @@ def CMS_lumi(pad,  iPeriod,  iPosX ):
         lumiText += "1000 fb^{-1} (14TeV)"
     elif ( iPeriod==3 ):
         lumiText += "3000 fb^{-1} (14TeV)"
+    elif ( iPeriod==0 ):
+        lumiText += "36 fb^{-1} (14TeV)"
 
 
             
