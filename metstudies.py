@@ -153,21 +153,27 @@ class histos:
 		getattr(self,name).Fill(getattr(event,name).Pt(),weight)
 		getattr(self,name+"_t").Fill(getattr(event,name+"_t"),weight)
 		getattr(self,name+"_p").Fill(getattr(event,name+"_p"),weight)
-		t2
-		p2
-		# getattr(self,name+"_t2").Fill(getattr(event,name),weight)
-		# getattr(self,name+"_p2").Fill(getattr(event,name),weight)
+		median_t=median
+		median_t.SetZ(0)
+		parallel=median_t.Vect().Unit()
+		transverse=median_t.Vect().Orthogonal()
+		t2 = transverse.Dot(getattr(event,name).Vect());
+		p2 = parallel.Dot(getattr(event,name).Vect());
+		getattr(self,name+"_t2").Fill(t2,weight)
+		getattr(self,name+"_p2").Fill(p2,weight)
 
 		getattr(self,name+"_vsgenmet").Fill(event.gen_met.Pt(),getattr(event,name).Pt(),weight)
 		getattr(self,name+"_vsnpv").Fill(event.npv,getattr(event,name).Pt(),weight)
 		getattr(self,name+"_vsnjet").Fill(event.njet,getattr(event,name).Pt(),weight)
 		getattr(self,name+"_vspt").Fill(event.median.Pt(),getattr(event,name).Pt(),weight)
 		getattr(self,name+"_vseta").Fill(event.median.Eta(),getattr(event,name).Pt(),weight)
+
 		# getattr(self,name+"_t2_vsgenmet").Fill(,weight)
 		# getattr(self,name+"_t2_vsnpv").Fill(,weight)
 		# getattr(self,name+"_t2_vsnjet").Fill(,weight)
 		# getattr(self,name+"_t2_vspt").Fill(,weight)
 		# getattr(self,name+"_t2_vseta").Fill(,weight)
+
 		# getattr(self,name+"_p2_vsgenmet").Fill(,weight)
 		# getattr(self,name+"_p2_vsnpv").Fill(,weight)
 		# getattr(self,name+"_p2_vsnjet").Fill(,weight)
