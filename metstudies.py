@@ -28,23 +28,24 @@ class histos:
 	def __init__(self, selection, sample, outfile):
 		outfile.cd()
 		self.sample=sample
+		self.selection=selection
 		self.histolist=[]
 
 		self.weight = ROOT.TH1F("weight_"+selection,";Weight ;A.U.",5000 ,0 ,5 )
 		self.weight.Sumw2()
 		self.histolist.append('weight')
 
-		setup_met_study(self,'met','p_{T}^{miss}')
-		setup_met_study(self,'puppi_met','PUPPI p_{T}^{miss}')
-		setup_met_study(self,'gen_met','gen p_{T}^{miss}')
+		self.setup_met_study('met','p_{T}^{miss}')
+		self.setup_met_study('puppi_met','PUPPI p_{T}^{miss}')
+		self.setup_met_study('gen_met','gen p_{T}^{miss}')
 
-		setup_met_study(self,'jetsum','#SigmaJet p_{T}')
-		setup_met_study(self,'puppi_jetsum','PUPPI #SigmaJet p_{T}')
-		setup_met_study(self,'gen_jetsum','gen #SigmaJet p_{T}')
+		self.setup_met_study('jetsum','#SigmaJet p_{T}')
+		self.setup_met_study('puppi_jetsum','PUPPI #SigmaJet p_{T}')
+		self.setup_met_study('gen_jetsum','gen #SigmaJet p_{T}')
 
 		if 'fullsim' in self.sample:
-			setup_met_study(self,'genpileup_met','noHF p_{T}^{miss}')
-			setup_met_study(self,'pfsum','p_{T} of #SigmaPFCand')
+			self.setup_met_study('genpileup_met','noHF p_{T}^{miss}')
+			self.setup_met_study('pfsum','p_{T} of #SigmaPFCand')
 
 			self.puppi_ht = ROOT.TH1F("puppi_ht_"+selection,";PUPPI HT ;A.U.",1000 ,0 ,1000)
 			self.puppi_ht.Sumw2()
@@ -55,7 +56,7 @@ class histos:
 			self.histolist.append('gen_ht')
 			
 		else:
-			setup_met_study(self,'genpileup_met','gen pileup p_{T}^{miss}')
+			self.setup_met_study('genpileup_met','gen pileup p_{T}^{miss}')
 
 		self.l1 = ROOT.TH1F("l1_"+selection,";leading lepton p_{T} ;A.U.",1000 ,0 ,1000)
 		self.l1.Sumw2()
@@ -108,93 +109,139 @@ class histos:
 		for i in self.histolist:
 			getattr(self,i).Sumw2()
 
-
+		#print(self.histolist)
 
 	def setup_met_study(self,name,title):
-		setattr(self,name,ROOT.TH1F(name+"_"+selection,";"+title+" ;A.U.",1000 ,0 ,1000))
-		setattr(self,name+"_t",ROOT.TH1F(name+"_t_"+selection,";transverse "+title+" ;A.U.",1000 ,0 ,1000))
-		setattr(self,name+"_p",ROOT.TH1F(name+"_p_"+selection,";parallel "+title+" ;A.U.",1000 ,0 ,1000))
-		setattr(self,name+"_t2",ROOT.TH1F(name+"_t2_"+selection,";transverse "+title+" ;A.U.",1000 ,0 ,1000))
-		setattr(self,name+"_p2",ROOT.TH1F(name+"_p2_"+selection,";parallel "+title+" ;A.U.",1000 ,0 ,1000))
+		setattr(self,name,ROOT.TH1F(name+"_"+self.selection,";"+title+" ;A.U.",1000 ,0 ,1000))
+		setattr(self,name+"_t",ROOT.TH1F(name+"_t_"+self.selection,";transverse "+title+" ;A.U.",1000 ,0 ,1000))
+		setattr(self,name+"_p",ROOT.TH1F(name+"_p_"+self.selection,";parallel "+title+" ;A.U.",1000 ,0 ,1000))
+		setattr(self,name+"_t2",ROOT.TH1F(name+"_t2_"+self.selection,";transverse "+title+" ;A.U.",1000 ,0 ,1000))
+		setattr(self,name+"_p2",ROOT.TH1F(name+"_p2_"+self.selection,";parallel "+title+" ;A.U.",1000 ,0 ,1000))
 
-		setattr(self,name+"_vsgenmet",ROOT.TProfile(name+"_vsgenmet_"+selection,"; gen p_{T}^{miss};"+title,1000 ,0 ,1000))
-		setattr(self,name+"_vsnpv",ROOT.TProfile(name+"_vsnpv_"+selection,"; N_{PV};"+title,1000 ,0 ,300))
-		setattr(self,name+"_vsnjet",ROOT.TProfile(name+"_vsnjet_"+selection,"; N_{jets};"+title,1000 ,0 ,50))
-		setattr(self,name+"_vspt",ROOT.TProfile(name+"_vspt_"+selection,"; p_{T}^{Z};"+title,1000 ,0 ,1000))
-		setattr(self,name+"_vseta",ROOT.TProfile(name+"_vseta_"+selection,"; #eta_{Z};"+title,1000 ,-5 ,5))
-		setattr(self,name+"_t2_vsgenmet",ROOT.TProfile(name+"_t2_vsgenmet_"+selection,"; gen p_{T}^{miss};transverse "+title,1000 ,0 ,1000))
-		setattr(self,name+"_t2_vsnpv",ROOT.TProfile(name+"_t2_vsnpv_"+selection,"; N_{PV};transverse "+title,1000 ,0 ,300))
-		setattr(self,name+"_t2_vsnjet",ROOT.TProfile(name+"_t2_vsnjet_"+selection,"; N_{jets};transverse "+title,1000 ,0 ,50))
-		setattr(self,name+"_t2_vspt",ROOT.TProfile(name+"_t2_vspt_"+selection,"; p_{T}^{Z};transverse "+title,1000 ,0 ,1000))
-		setattr(self,name+"_t2_vseta",ROOT.TProfile(name+"_t2_vseta_"+selection,"; #eta_{Z};transverse "+title,1000 ,-5 ,5))
-		setattr(self,name+"_p2_vsgenmet",ROOT.TProfile(name+"_p2_vsgenmet_"+selection,"; gen p_{T}^{miss};parallel "+title,1000 ,0 ,1000))
-		setattr(self,name+"_p2_vsnpv",ROOT.TProfile(name+"_p2_vsnpv_"+selection,"; N_{PV};parallel "+title,1000 ,0 ,300))
-		setattr(self,name+"_p2_vsnjet",ROOT.TProfile(name+"_p2_vsnjet_"+selection,"; N_{jets};parallel "+title,1000 ,0 ,50))
-		setattr(self,name+"_p2_vspt",ROOT.TProfile(name+"_p2_vspt_"+selection,"; p_{T}^{Z};parallel "+title,1000 ,0 ,1000))
-		setattr(self,name+"_p2_vseta",ROOT.TProfile(name+"_p2_vseta_"+selection,"; #eta_{Z};parallel "+title,1000 ,-5 ,5))
+		setattr(self,name+"_vsgenmet",ROOT.TProfile(name+"_vsgenmet_"+self.selection,"; gen p_{T}^{miss};"+title,1000 ,0 ,1000))
+		setattr(self,name+"_vsnpv",ROOT.TProfile(name+"_vsnpv_"+self.selection,"; N_{PV};"+title,1000 ,0 ,300))
+		setattr(self,name+"_vsnjet",ROOT.TProfile(name+"_vsnjet_"+self.selection,"; N_{jets};"+title,1000 ,0 ,50))
+		setattr(self,name+"_vspt",ROOT.TProfile(name+"_vspt_"+self.selection,"; p_{T}^{Z};"+title,1000 ,0 ,1000))
+		setattr(self,name+"_vseta",ROOT.TProfile(name+"_vseta_"+self.selection,"; #eta_{Z};"+title,1000 ,-5 ,5))
+		setattr(self,name+"_t2_vsgenmet",ROOT.TProfile(name+"_t2_vsgenmet_"+self.selection,"; gen p_{T}^{miss};transverse "+title,1000 ,0 ,1000))
+		setattr(self,name+"_t2_vsnpv",ROOT.TProfile(name+"_t2_vsnpv_"+self.selection,"; N_{PV};transverse "+title,1000 ,0 ,300))
+		setattr(self,name+"_t2_vsnjet",ROOT.TProfile(name+"_t2_vsnjet_"+self.selection,"; N_{jets};transverse "+title,1000 ,0 ,50))
+		setattr(self,name+"_t2_vspt",ROOT.TProfile(name+"_t2_vspt_"+self.selection,"; p_{T}^{Z};transverse "+title,1000 ,0 ,1000))
+		setattr(self,name+"_t2_vseta",ROOT.TProfile(name+"_t2_vseta_"+self.selection,"; #eta_{Z};transverse "+title,1000 ,-5 ,5))
+		setattr(self,name+"_p2_vsgenmet",ROOT.TProfile(name+"_p2_vsgenmet_"+self.selection,"; gen p_{T}^{miss};parallel "+title,1000 ,0 ,1000))
+		setattr(self,name+"_p2_vsnpv",ROOT.TProfile(name+"_p2_vsnpv_"+self.selection,"; N_{PV};parallel "+title,1000 ,0 ,300))
+		setattr(self,name+"_p2_vsnjet",ROOT.TProfile(name+"_p2_vsnjet_"+self.selection,"; N_{jets};parallel "+title,1000 ,0 ,50))
+		setattr(self,name+"_p2_vspt",ROOT.TProfile(name+"_p2_vspt_"+self.selection,"; p_{T}^{Z};parallel "+title,1000 ,0 ,1000))
+		setattr(self,name+"_p2_vseta",ROOT.TProfile(name+"_p2_vseta_"+self.selection,"; #eta_{Z};parallel "+title,1000 ,-5 ,5))
 
-		setattr(self,name+"_res_vsgenmet",ROOT.TProfile(name+"_res_vsgenmet_"+selection,"; gen p_{T}^{miss};"+title+" response",1000 ,0 ,1000))
-		setattr(self,name+"_res_vsnpv",ROOT.TProfile(name+"_res_vsnpv_"+selection,"; N_{PV};"+title+" response",1000 ,0 ,300))
-		setattr(self,name+"_res_vsnjet",ROOT.TProfile(name+"_res_vsnjet_"+selection,"; N_{jets};"+title+" response",1000 ,0 ,50))
-		setattr(self,name+"_res_vspt",ROOT.TProfile(name+"_res_vspt_"+selection,"; p_{T}^{Z};"+title+" response",1000 ,0 ,1000))
-		setattr(self,name+"_res_vseta",ROOT.TProfile(name+"_res_vseta_"+selection,"; #eta_{Z};"+title+" response",1000 ,-5 ,5))
-		setattr(self,name+"_t2_res_vsgenmet",ROOT.TProfile(name+"_t2_res_vsgenmet_"+selection,"; gen p_{T}^{miss};transverse "+title+" response",1000 ,0 ,1000))
-		setattr(self,name+"_t2_res_vsnpv",ROOT.TProfile(name+"_t2_res_vsnpv_"+selection,"; N_{PV};transverse "+title+" response",1000 ,0 ,300))
-		setattr(self,name+"_t2_res_vsnjet",ROOT.TProfile(name+"_t2_res_vsnjet_"+selection,"; N_{jets};transverse "+title+" response",1000 ,0 ,50))
-		setattr(self,name+"_t2_res_vspt",ROOT.TProfile(name+"_t2_res_vspt_"+selection,"; p_{T}^{Z};transverse "+title+" response",1000 ,0 ,1000))
-		setattr(self,name+"_t2_res_vseta",ROOT.TProfile(name+"_t2_res_vseta_"+selection,"; #eta_{Z};transverse "+title+" response",1000 ,-5 ,5))
-		setattr(self,name+"_p2_res_vsgenmet",ROOT.TProfile(name+"_p2_res_vsgenmet_"+selection,"; gen p_{T}^{miss};parallel "+title+" response",1000 ,0 ,1000))
-		setattr(self,name+"_p2_res_vsnpv",ROOT.TProfile(name+"_p2_res_vsnpv_"+selection,"; N_{PV};parallel "+title+" response",1000 ,0 ,300))
-		setattr(self,name+"_p2_res_vsnjet",ROOT.TProfile(name+"_p2_res_vsnjet_"+selection,"; N_{jets};parallel "+title+" response",1000 ,0 ,50))
-		setattr(self,name+"_p2_res_vspt",ROOT.TProfile(name+"_p2_res_vspt_"+selection,"; p_{T}^{Z};parallel "+title+" response",1000 ,0 ,1000))
-		setattr(self,name+"_p2_res_vseta",ROOT.TProfile(name+"_p2_res_vseta_"+selection,"; #eta_{Z};parallel "+title+" response",1000 ,-5 ,5))
+		setattr(self,name+"_res_vsgenmet",ROOT.TProfile(name+"_res_vsgenmet_"+self.selection,"; gen p_{T}^{miss};"+title+" response",1000 ,0 ,1000))
+		setattr(self,name+"_res_vsnpv",ROOT.TProfile(name+"_res_vsnpv_"+self.selection,"; N_{PV};"+title+" response",1000 ,0 ,300))
+		setattr(self,name+"_res_vsnjet",ROOT.TProfile(name+"_res_vsnjet_"+self.selection,"; N_{jets};"+title+" response",1000 ,0 ,50))
+		setattr(self,name+"_res_vspt",ROOT.TProfile(name+"_res_vspt_"+self.selection,"; p_{T}^{Z};"+title+" response",1000 ,0 ,1000))
+		setattr(self,name+"_res_vseta",ROOT.TProfile(name+"_res_vseta_"+self.selection,"; #eta_{Z};"+title+" response",1000 ,-5 ,5))
+		setattr(self,name+"_t2_res_vsgenmet",ROOT.TProfile(name+"_t2_res_vsgenmet_"+self.selection,"; gen p_{T}^{miss};transverse "+title+" response",1000 ,0 ,1000))
+		setattr(self,name+"_t2_res_vsnpv",ROOT.TProfile(name+"_t2_res_vsnpv_"+self.selection,"; N_{PV};transverse "+title+" response",1000 ,0 ,300))
+		setattr(self,name+"_t2_res_vsnjet",ROOT.TProfile(name+"_t2_res_vsnjet_"+self.selection,"; N_{jets};transverse "+title+" response",1000 ,0 ,50))
+		setattr(self,name+"_t2_res_vspt",ROOT.TProfile(name+"_t2_res_vspt_"+self.selection,"; p_{T}^{Z};transverse "+title+" response",1000 ,0 ,1000))
+		setattr(self,name+"_t2_res_vseta",ROOT.TProfile(name+"_t2_res_vseta_"+self.selection,"; #eta_{Z};transverse "+title+" response",1000 ,-5 ,5))
+		setattr(self,name+"_p2_res_vsgenmet",ROOT.TProfile(name+"_p2_res_vsgenmet_"+self.selection,"; gen p_{T}^{miss};parallel "+title+" response",1000 ,0 ,1000))
+		setattr(self,name+"_p2_res_vsnpv",ROOT.TProfile(name+"_p2_res_vsnpv_"+self.selection,"; N_{PV};parallel "+title+" response",1000 ,0 ,300))
+		setattr(self,name+"_p2_res_vsnjet",ROOT.TProfile(name+"_p2_res_vsnjet_"+self.selection,"; N_{jets};parallel "+title+" response",1000 ,0 ,50))
+		setattr(self,name+"_p2_res_vspt",ROOT.TProfile(name+"_p2_res_vspt_"+self.selection,"; p_{T}^{Z};parallel "+title+" response",1000 ,0 ,1000))
+		setattr(self,name+"_p2_res_vseta",ROOT.TProfile(name+"_p2_res_vseta_"+self.selection,"; #eta_{Z};parallel "+title+" response",1000 ,-5 ,5))
+
+		self.histolist.append(name)
+		self.histolist.append(name+"_t")
+		self.histolist.append(name+"_p")
+		self.histolist.append(name+"_t2")
+		self.histolist.append(name+"_p2")
+		self.histolist.append(name+"_vsgenmet")
+		self.histolist.append(name+"_vsnpv")
+		self.histolist.append(name+"_vsnjet")
+		self.histolist.append(name+"_vspt")
+		self.histolist.append(name+"_vseta")
+		self.histolist.append(name+"_t2_vsgenmet")
+		self.histolist.append(name+"_t2_vsnpv")
+		self.histolist.append(name+"_t2_vsnjet")
+		self.histolist.append(name+"_t2_vspt")
+		self.histolist.append(name+"_t2_vseta")
+		self.histolist.append(name+"_p2_vsgenmet")
+		self.histolist.append(name+"_p2_vsnpv")
+		self.histolist.append(name+"_p2_vsnjet")
+		self.histolist.append(name+"_p2_vspt")
+		self.histolist.append(name+"_p2_vseta")
+		self.histolist.append(name+"_res_vsgenmet")
+		self.histolist.append(name+"_res_vsnpv")
+		self.histolist.append(name+"_res_vsnjet")
+		self.histolist.append(name+"_res_vspt")
+		self.histolist.append(name+"_res_vseta")
+		self.histolist.append(name+"_t2_res_vsgenmet")
+		self.histolist.append(name+"_t2_res_vsnpv")
+		self.histolist.append(name+"_t2_res_vsnjet")
+		self.histolist.append(name+"_t2_res_vspt")
+		self.histolist.append(name+"_t2_res_vseta")
+		self.histolist.append(name+"_p2_res_vsgenmet")
+		self.histolist.append(name+"_p2_res_vsnpv")
+		self.histolist.append(name+"_p2_res_vsnjet")
+		self.histolist.append(name+"_p2_res_vspt")
+		self.histolist.append(name+"_p2_res_vseta")
 
 	def fill_met_study(self,event,name):
-		getattr(self,name).Fill(getattr(event,name).Pt(),weight)
-		getattr(self,name+"_t").Fill(getattr(event,name+"_t"),weight)
-		getattr(self,name+"_p").Fill(getattr(event,name+"_p"),weight)
-		median_t=median
+		the_variable=getattr(event,name).Pt()
+		getattr(self,name).Fill(the_variable,self.the_weight)
+		getattr(self,name+"_t").Fill(getattr(event,name+"_t"),self.the_weight)
+		getattr(self,name+"_p").Fill(getattr(event,name+"_p"),self.the_weight)
+		median_t=event.median
 		median_t.SetZ(0)
 		parallel=median_t.Vect().Unit()
 		transverse=median_t.Vect().Orthogonal()
 		t2 = transverse.Dot(getattr(event,name).Vect());
 		p2 = parallel.Dot(getattr(event,name).Vect());
-		getattr(self,name+"_t2").Fill(t2,weight)
-		getattr(self,name+"_p2").Fill(p2,weight)
+		gen_met=event.gen_met.Pt()
+		gen_t2 = transverse.Dot(event.gen_met.Vect());
+		gen_p2 = parallel.Dot(event.gen_met.Vect());
 
-		getattr(self,name+"_vsgenmet").Fill(event.gen_met.Pt(),getattr(event,name).Pt(),weight)
-		getattr(self,name+"_vsnpv").Fill(event.npv,getattr(event,name).Pt(),weight)
-		getattr(self,name+"_vsnjet").Fill(event.njet,getattr(event,name).Pt(),weight)
-		getattr(self,name+"_vspt").Fill(event.median.Pt(),getattr(event,name).Pt(),weight)
-		getattr(self,name+"_vseta").Fill(event.median.Eta(),getattr(event,name).Pt(),weight)
+		getattr(self,name+"_t2").Fill(t2,self.the_weight)
+		getattr(self,name+"_p2").Fill(p2,self.the_weight)
 
-		# getattr(self,name+"_t2_vsgenmet").Fill(,weight)
-		# getattr(self,name+"_t2_vsnpv").Fill(,weight)
-		# getattr(self,name+"_t2_vsnjet").Fill(,weight)
-		# getattr(self,name+"_t2_vspt").Fill(,weight)
-		# getattr(self,name+"_t2_vseta").Fill(,weight)
+		getattr(self,name+"_vsgenmet").Fill(gen_met,the_variable,self.the_weight)
+		getattr(self,name+"_vsnpv").Fill(event.npv,the_variable,self.the_weight)
+		getattr(self,name+"_vsnjet").Fill(event.njet,the_variable,self.the_weight)
+		getattr(self,name+"_vspt").Fill(event.median.Pt(),the_variable,self.the_weight)
+		getattr(self,name+"_vseta").Fill(event.median.Eta(),the_variable,self.the_weight)
 
-		# getattr(self,name+"_p2_vsgenmet").Fill(,weight)
-		# getattr(self,name+"_p2_vsnpv").Fill(,weight)
-		# getattr(self,name+"_p2_vsnjet").Fill(,weight)
-		# getattr(self,name+"_p2_vspt").Fill(,weight)
-		# getattr(self,name+"_p2_vseta").Fill(,weight)
+		getattr(self,name+"_t2_vsgenmet").Fill(gen_met,t2,self.the_weight)
+		getattr(self,name+"_t2_vsnpv").Fill(event.npv,t2,self.the_weight)
+		getattr(self,name+"_t2_vsnjet").Fill(event.njet,t2,self.the_weight)
+		getattr(self,name+"_t2_vspt").Fill(event.median.Pt(),t2,self.the_weight)
+		getattr(self,name+"_t2_vseta").Fill(event.median.Eta(),t2,self.the_weight)
 
-		getattr(self,name+"_res_vsgenmet").Fill(,weight)
-		getattr(self,name+"_res_vsnpv").Fill(,weight)
-		getattr(self,name+"_res_vsnjet").Fill(,weight)
-		getattr(self,name+"_res_vspt").Fill(,weight)
-		getattr(self,name+"_res_vseta").Fill(,weight)
-		# getattr(self,name+"_t2_res_vsgenmet").Fill(,weight)
-		# getattr(self,name+"_t2_res_vsnpv").Fill(,weight)
-		# getattr(self,name+"_t2_res_vsnjet").Fill(,weight)
-		# getattr(self,name+"_t2_res_vspt").Fill(,weight)
-		# getattr(self,name+"_t2_res_vseta").Fill(,weight)
-		# getattr(self,name+"_p2_res_vsgenmet").Fill(,weight)
-		# getattr(self,name+"_p2_res_vsnpv").Fill(,weight)
-		# getattr(self,name+"_p2_res_vsnjet").Fill(,weight)
-		# getattr(self,name+"_p2_res_vspt").Fill(,weight)
-		# getattr(self,name+"_p2_res_vseta").Fill(,weight)
+		getattr(self,name+"_p2_vsgenmet").Fill(gen_met,p2,self.the_weight)
+		getattr(self,name+"_p2_vsnpv").Fill(event.npv,p2,self.the_weight)
+		getattr(self,name+"_p2_vsnjet").Fill(event.njet,p2,self.the_weight)
+		getattr(self,name+"_p2_vspt").Fill(event.median.Pt(),p2,self.the_weight)
+		getattr(self,name+"_p2_vseta").Fill(event.median.Eta(),p2,self.the_weight)
+
+		res=the_variable/gen_met-1
+		getattr(self,name+"_res_vsgenmet").Fill(gen_met,res,self.the_weight)
+		getattr(self,name+"_res_vsnpv").Fill(event.npv,res,self.the_weight)
+		getattr(self,name+"_res_vsnjet").Fill(event.njet,res,self.the_weight)
+		getattr(self,name+"_res_vspt").Fill(event.median.Pt(),res,self.the_weight)
+		getattr(self,name+"_res_vseta").Fill(event.median.Eta(),res,self.the_weight)
+
+		res_t2=t2/gen_t2-1
+		getattr(self,name+"_t2_res_vsgenmet").Fill(gen_met,res_t2,self.the_weight)
+		getattr(self,name+"_t2_res_vsnpv").Fill(event.npv,res_t2,self.the_weight)
+		getattr(self,name+"_t2_res_vsnjet").Fill(event.njet,res_t2,self.the_weight)
+		getattr(self,name+"_t2_res_vspt").Fill(event.median.Pt(),res_t2,self.the_weight)
+		getattr(self,name+"_t2_res_vseta").Fill(event.median.Eta(),res_t2,self.the_weight)
+
+		res_p2=p2/gen_p2-1
+		getattr(self,name+"_p2_res_vsgenmet").Fill(gen_met,res_p2,self.the_weight)
+		getattr(self,name+"_p2_res_vsnpv").Fill(event.npv,res_p2,self.the_weight)
+		getattr(self,name+"_p2_res_vsnjet").Fill(event.njet,res_p2,self.the_weight)
+		getattr(self,name+"_p2_res_vspt").Fill(event.median.Pt(),res_p2,self.the_weight)
+		getattr(self,name+"_p2_res_vseta").Fill(event.median.Eta(),res_p2,self.the_weight)
 
 
 	def save(self):
@@ -208,39 +255,39 @@ class histos:
 
 
 	def fill(self, event):
-		weight=event.weight
+		self.the_weight=event.weight
 		# if hasweight[self.sample]:
 		# 	weight = self.sample_weight*event.weight
 
 
 
-		self.weight.Fill(event.weight,weight)
+		self.weight.Fill(event.weight)
 
-		fill_met_study(self,event,'met')
-		fill_met_study(self,event,'puppi_met')
-		fill_met_study(self,event,'gen_met')
-		fill_met_study(self,event,'genpileup_met')
-		fill_met_study(self,event,'jetsum')
-		fill_met_study(self,event,'puppi_jetsum')
-		fill_met_study(self,event,'gen_jetsum')
+		self.fill_met_study(event,'met')
+		self.fill_met_study(event,'puppi_met')
+		self.fill_met_study(event,'gen_met')
+		self.fill_met_study(event,'genpileup_met')
+		self.fill_met_study(event,'jetsum')
+		self.fill_met_study(event,'puppi_jetsum')
+		self.fill_met_study(event,'gen_jetsum')
 
 		if 'fullsim' in self.sample:
-			self.puppi_ht.Fill(event.puppi_ht,weight)
-			self.gen_ht.Fill(event.gen_ht,weight)
-			fill_met_study(self,event,'pfsum')
+			self.puppi_ht.Fill(event.puppi_ht,self.the_weight)
+			self.gen_ht.Fill(event.gen_ht,self.the_weight)
+			self.fill_met_study(event,'pfsum')
 
-		self.l1.Fill(event.l1.Pt(),weight)
-		self.l2.Fill(event.l2.Pt(),weight)
-		self.median.Fill(event.median.Pt(),weight)
-		self.l1_eta.Fill(event.l1.Eta(),weight)
-		self.l2_eta.Fill(event.l2.Eta(),weight)
-		self.median_eta.Fill(event.median.Eta(),weight)
-		self.npv.Fill(event.npv,weight)
-		self.njet.Fill(event.njet,weight)
-		self.npuppijet.Fill(event.npuppijet,weight)
-		self.ngenjet.Fill(event.ngenjet,weight)
-		self.ht.Fill(event.ht,weight)
-		self.rho.Fill(event.rho,weight)
+		self.l1.Fill(event.l1.Pt(),self.the_weight)
+		self.l2.Fill(event.l2.Pt(),self.the_weight)
+		self.median.Fill(event.median.Pt(),self.the_weight)
+		self.l1_eta.Fill(event.l1.Eta(),self.the_weight)
+		self.l2_eta.Fill(event.l2.Eta(),self.the_weight)
+		self.median_eta.Fill(event.median.Eta(),self.the_weight)
+		self.npv.Fill(event.npv,self.the_weight)
+		self.njet.Fill(event.njet,self.the_weight)
+		self.npuppijet.Fill(event.npuppijet,self.the_weight)
+		self.ngenjet.Fill(event.ngenjet,self.the_weight)
+		self.ht.Fill(event.ht,self.the_weight)
+		self.rho.Fill(event.rho,self.the_weight)
 
 def doplots(sample):
 	out = ROOT.TFile('plots/outfile_'+filenames[sample]+'.root','RECREATE')
@@ -410,56 +457,7 @@ if __name__ == '__main__':
 
 	files=[ROOT.TFile(de,"READ"),ROOT.TFile(fs,"READ")]
 
-	histnames=[
-		'met',
-		'met_t',
-		'met_p',
-		'puppi_met',
-		'puppi_met_t',
-		'puppi_met_p',
-		'gen_met',
-		'gen_met_t',
-		'gen_met_p',
-
-		'l1',
-		'l2',
-		'median',
-		'l1_eta',
-		'l2_eta',
-		'median_eta',
-
-		'npv',
-		'njet',
-		'npuppijet',
-		'ngenjet',
-		'ht',
-		'rho',
-
-		'jetsum',
-		'jetsum_t',
-		'jetsum_p',
-		'puppi_jetsum',
-		'puppi_jetsum_t',
-		'puppi_jetsum_p',
-		'gen_jetsum',
-		'gen_jetsum_t',
-		'gen_jetsum_p'
-		]
-
-
-	histnames2=[
-		'puppi_ht',
-		'gen_ht',
-		'pfsum',
-		'pfsum_t',
-		'pfsum_p',
-	]
-
-	histnames3=[
-			'genpileup_met',
-		'genpileup_met_t',
-		'genpileup_met_p'
-	]
+	histnames=['weight', 'met', 'met_t', 'met_p', 'met_t2', 'met_p2', 'met_vsgenmet', 'met_vsnpv', 'met_vsnjet', 'met_vspt', 'met_vseta', 'met_t2_vsgenmet', 'met_t2_vsnpv', 'met_t2_vsnjet', 'met_t2_vspt', 'met_t2_vseta', 'met_p2_vsgenmet', 'met_p2_vsnpv', 'met_p2_vsnjet', 'met_p2_vspt', 'met_p2_vseta', 'met_res_vsgenmet', 'met_res_vsnpv', 'met_res_vsnjet', 'met_res_vspt', 'met_res_vseta', 'met_t2_res_vsgenmet', 'met_t2_res_vsnpv', 'met_t2_res_vsnjet', 'met_t2_res_vspt', 'met_t2_res_vseta', 'met_p2_res_vsgenmet', 'met_p2_res_vsnpv', 'met_p2_res_vsnjet', 'met_p2_res_vspt', 'met_p2_res_vseta', 'puppi_met', 'puppi_met_t', 'puppi_met_p', 'puppi_met_t2', 'puppi_met_p2', 'puppi_met_vsgenmet', 'puppi_met_vsnpv', 'puppi_met_vsnjet', 'puppi_met_vspt', 'puppi_met_vseta', 'puppi_met_t2_vsgenmet', 'puppi_met_t2_vsnpv', 'puppi_met_t2_vsnjet', 'puppi_met_t2_vspt', 'puppi_met_t2_vseta', 'puppi_met_p2_vsgenmet', 'puppi_met_p2_vsnpv', 'puppi_met_p2_vsnjet', 'puppi_met_p2_vspt', 'puppi_met_p2_vseta', 'puppi_met_res_vsgenmet', 'puppi_met_res_vsnpv', 'puppi_met_res_vsnjet', 'puppi_met_res_vspt', 'puppi_met_res_vseta', 'puppi_met_t2_res_vsgenmet', 'puppi_met_t2_res_vsnpv', 'puppi_met_t2_res_vsnjet', 'puppi_met_t2_res_vspt', 'puppi_met_t2_res_vseta', 'puppi_met_p2_res_vsgenmet', 'puppi_met_p2_res_vsnpv', 'puppi_met_p2_res_vsnjet', 'puppi_met_p2_res_vspt', 'puppi_met_p2_res_vseta', 'gen_met', 'gen_met_t', 'gen_met_p', 'gen_met_t2', 'gen_met_p2', 'gen_met_vsgenmet', 'gen_met_vsnpv', 'gen_met_vsnjet', 'gen_met_vspt', 'gen_met_vseta', 'gen_met_t2_vsgenmet', 'gen_met_t2_vsnpv', 'gen_met_t2_vsnjet', 'gen_met_t2_vspt', 'gen_met_t2_vseta', 'gen_met_p2_vsgenmet', 'gen_met_p2_vsnpv', 'gen_met_p2_vsnjet', 'gen_met_p2_vspt', 'gen_met_p2_vseta', 'gen_met_res_vsgenmet', 'gen_met_res_vsnpv', 'gen_met_res_vsnjet', 'gen_met_res_vspt', 'gen_met_res_vseta', 'gen_met_t2_res_vsgenmet', 'gen_met_t2_res_vsnpv', 'gen_met_t2_res_vsnjet', 'gen_met_t2_res_vspt', 'gen_met_t2_res_vseta', 'gen_met_p2_res_vsgenmet', 'gen_met_p2_res_vsnpv', 'gen_met_p2_res_vsnjet', 'gen_met_p2_res_vspt', 'gen_met_p2_res_vseta', 'jetsum', 'jetsum_t', 'jetsum_p', 'jetsum_t2', 'jetsum_p2', 'jetsum_vsgenmet', 'jetsum_vsnpv', 'jetsum_vsnjet', 'jetsum_vspt', 'jetsum_vseta', 'jetsum_t2_vsgenmet', 'jetsum_t2_vsnpv', 'jetsum_t2_vsnjet', 'jetsum_t2_vspt', 'jetsum_t2_vseta', 'jetsum_p2_vsgenmet', 'jetsum_p2_vsnpv', 'jetsum_p2_vsnjet', 'jetsum_p2_vspt', 'jetsum_p2_vseta', 'jetsum_res_vsgenmet', 'jetsum_res_vsnpv', 'jetsum_res_vsnjet', 'jetsum_res_vspt', 'jetsum_res_vseta', 'jetsum_t2_res_vsgenmet', 'jetsum_t2_res_vsnpv', 'jetsum_t2_res_vsnjet', 'jetsum_t2_res_vspt', 'jetsum_t2_res_vseta', 'jetsum_p2_res_vsgenmet', 'jetsum_p2_res_vsnpv', 'jetsum_p2_res_vsnjet', 'jetsum_p2_res_vspt', 'jetsum_p2_res_vseta', 'puppi_jetsum', 'puppi_jetsum_t', 'puppi_jetsum_p', 'puppi_jetsum_t2', 'puppi_jetsum_p2', 'puppi_jetsum_vsgenmet', 'puppi_jetsum_vsnpv', 'puppi_jetsum_vsnjet', 'puppi_jetsum_vspt', 'puppi_jetsum_vseta', 'puppi_jetsum_t2_vsgenmet', 'puppi_jetsum_t2_vsnpv', 'puppi_jetsum_t2_vsnjet', 'puppi_jetsum_t2_vspt', 'puppi_jetsum_t2_vseta', 'puppi_jetsum_p2_vsgenmet', 'puppi_jetsum_p2_vsnpv', 'puppi_jetsum_p2_vsnjet', 'puppi_jetsum_p2_vspt', 'puppi_jetsum_p2_vseta', 'puppi_jetsum_res_vsgenmet', 'puppi_jetsum_res_vsnpv', 'puppi_jetsum_res_vsnjet', 'puppi_jetsum_res_vspt', 'puppi_jetsum_res_vseta', 'puppi_jetsum_t2_res_vsgenmet', 'puppi_jetsum_t2_res_vsnpv', 'puppi_jetsum_t2_res_vsnjet', 'puppi_jetsum_t2_res_vspt', 'puppi_jetsum_t2_res_vseta', 'puppi_jetsum_p2_res_vsgenmet', 'puppi_jetsum_p2_res_vsnpv', 'puppi_jetsum_p2_res_vsnjet', 'puppi_jetsum_p2_res_vspt', 'puppi_jetsum_p2_res_vseta', 'gen_jetsum', 'gen_jetsum_t', 'gen_jetsum_p', 'gen_jetsum_t2', 'gen_jetsum_p2', 'gen_jetsum_vsgenmet', 'gen_jetsum_vsnpv', 'gen_jetsum_vsnjet', 'gen_jetsum_vspt', 'gen_jetsum_vseta', 'gen_jetsum_t2_vsgenmet', 'gen_jetsum_t2_vsnpv', 'gen_jetsum_t2_vsnjet', 'gen_jetsum_t2_vspt', 'gen_jetsum_t2_vseta', 'gen_jetsum_p2_vsgenmet', 'gen_jetsum_p2_vsnpv', 'gen_jetsum_p2_vsnjet', 'gen_jetsum_p2_vspt', 'gen_jetsum_p2_vseta', 'gen_jetsum_res_vsgenmet', 'gen_jetsum_res_vsnpv', 'gen_jetsum_res_vsnjet', 'gen_jetsum_res_vspt', 'gen_jetsum_res_vseta', 'gen_jetsum_t2_res_vsgenmet', 'gen_jetsum_t2_res_vsnpv', 'gen_jetsum_t2_res_vsnjet', 'gen_jetsum_t2_res_vspt', 'gen_jetsum_t2_res_vseta', 'gen_jetsum_p2_res_vsgenmet', 'gen_jetsum_p2_res_vsnpv', 'gen_jetsum_p2_res_vsnjet', 'gen_jetsum_p2_res_vspt', 'gen_jetsum_p2_res_vseta', 'genpileup_met', 'genpileup_met_t', 'genpileup_met_p', 'genpileup_met_t2', 'genpileup_met_p2', 'genpileup_met_vsgenmet', 'genpileup_met_vsnpv', 'genpileup_met_vsnjet', 'genpileup_met_vspt', 'genpileup_met_vseta', 'genpileup_met_t2_vsgenmet', 'genpileup_met_t2_vsnpv', 'genpileup_met_t2_vsnjet', 'genpileup_met_t2_vspt', 'genpileup_met_t2_vseta', 'genpileup_met_p2_vsgenmet', 'genpileup_met_p2_vsnpv', 'genpileup_met_p2_vsnjet', 'genpileup_met_p2_vspt', 'genpileup_met_p2_vseta', 'genpileup_met_res_vsgenmet', 'genpileup_met_res_vsnpv', 'genpileup_met_res_vsnjet', 'genpileup_met_res_vspt', 'genpileup_met_res_vseta', 'genpileup_met_t2_res_vsgenmet', 'genpileup_met_t2_res_vsnpv', 'genpileup_met_t2_res_vsnjet', 'genpileup_met_t2_res_vspt', 'genpileup_met_t2_res_vseta', 'genpileup_met_p2_res_vsgenmet', 'genpileup_met_p2_res_vsnpv', 'genpileup_met_p2_res_vsnjet', 'genpileup_met_p2_res_vspt', 'genpileup_met_p2_res_vseta', 'l1', 'l2', 'median', 'l1_eta', 'l2_eta', 'median_eta', 'npv', 'njet', 'npuppijet', 'ngenjet', 'ht', 'rho']
 
 	if plotting:
 		for i in histnames:
