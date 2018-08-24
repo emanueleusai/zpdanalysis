@@ -115,8 +115,8 @@ class histos:
 		setattr(self,name,ROOT.TH1F(name+"_"+self.selection,";"+title+" ;A.U.",1000 ,0 ,1000))
 		setattr(self,name+"_t",ROOT.TH1F(name+"_t_"+self.selection,";transverse "+title+" ;A.U.",1000 ,0 ,1000))
 		setattr(self,name+"_p",ROOT.TH1F(name+"_p_"+self.selection,";parallel "+title+" ;A.U.",1000 ,0 ,1000))
-		setattr(self,name+"_t2",ROOT.TH1F(name+"_t2_"+self.selection,";transverse "+title+" ;A.U.",1000 ,0 ,1000))
-		setattr(self,name+"_p2",ROOT.TH1F(name+"_p2_"+self.selection,";parallel "+title+" ;A.U.",1000 ,0 ,1000))
+		setattr(self,name+"_t2",ROOT.TH1F(name+"_t2_"+self.selection,";transverse "+title+" ;A.U.",4000 ,0 ,2000))
+		setattr(self,name+"_p2",ROOT.TH1F(name+"_p2_"+self.selection,";parallel "+title+" ;A.U.",4000 ,0 ,2000))
 
 		setattr(self,name+"_vsgenmet",ROOT.TProfile(name+"_vsgenmet_"+self.selection,"; gen p_{T}^{miss};"+title,1000 ,0 ,1000))
 		setattr(self,name+"_vsnpv",ROOT.TProfile(name+"_vsnpv_"+self.selection,"; N_{PV};"+title,1000 ,0 ,300))
@@ -195,11 +195,11 @@ class histos:
 		median_t.SetZ(0)
 		parallel=median_t.Vect().Unit()
 		transverse=median_t.Vect().Orthogonal()
-		t2 = transverse.Dot(getattr(event,name).Vect());
-		p2 = parallel.Dot(getattr(event,name).Vect());
+		t2 = abs(transverse.Dot(getattr(event,name).Vect()))
+		p2 = abs(parallel.Dot(getattr(event,name).Vect()))
 		gen_met=event.gen_met.Pt()
-		gen_t2 = transverse.Dot(event.gen_met.Vect());
-		gen_p2 = parallel.Dot(event.gen_met.Vect());
+		gen_t2 = abs(transverse.Dot(event.gen_met.Vect()))
+		gen_p2 = abs(parallel.Dot(event.gen_met.Vect()))
 
 		getattr(self,name+"_t2").Fill(t2,self.the_weight)
 		getattr(self,name+"_p2").Fill(p2,self.the_weight)
@@ -461,19 +461,29 @@ if __name__ == '__main__':
 
 	if plotting:
 		for i in histnames:
+			drawoption='histo'
+			miny=0
+			maxy=0
+			rebin=20
+			if 'vs' in i:
+				drawoption='p'
+				rebin=50
+			if 'res' in i:
+				miny=-0.5
+				maxy=0.5
 			compare(
 		name=i+'_comp',
 		colors=intcolor,
 		normalize=True,
-		rebin=10,
+		rebin=rebin,
 
 		file_list=files,
 		name_list=[i+'_']*2,
 		legend_list=['Delphes','Full Sim'],
-		#drawoption='hist c',
+		drawoption=drawoption,
 		# ytitle='A.U.',
 		# xtitle='m_{g} gen level [GeV]',
 		# minx=200,maxx=7000,
-		#miny=0.3,maxy=1.1,rebin=1,
+		miny=miny,maxy=maxy,
 		textsizefactor=0.7)
 
