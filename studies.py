@@ -54,8 +54,12 @@ target_lumi = [
 36,300,1000,3000
 ]
 
+# selections = [
+# 'pre','full'
+# ]
+
 selections = [
-'pre','full'
+'full'
 ]
 
 hasweight = [
@@ -82,6 +86,8 @@ plots=[
 'top2_tau32',
 'top2_btag',
 'zp_m',
+'zp_m2',
+'zp_m3',
 'zp_dy',
 'zp_eta',
 'zp_phi',
@@ -138,6 +144,8 @@ class histos:
 		self.top2_tau32 = ROOT.TH1F("top2_tau32_"+selection+'_'+str(lumi),";#tau_{3}/#tau_{2} subleading jet",100,0,1)
 		self.top2_btag = ROOT.TH1F("top2_btag_"+selection+'_'+str(lumi),";b tag subleading jet;Events",2,0,2)
 		self.zp_m = ROOT.TH1F("zp_m_"+selection+'_'+str(lumi),";m_{t#bar{t}} [GeV];Events",200,0,8000)
+		self.zp_m2 = ROOT.TH1F("zp_m2_"+selection+'_'+str(lumi),";m_{t#bar{t}} [GeV];Events",200,0,8000)
+		self.zp_m3 = ROOT.TH1F("zp_m3_"+selection+'_'+str(lumi),";m_{t#bar{t}} [GeV];Events",200,0,8000)
 		self.zp_dy = ROOT.TH1F("zp_dy_"+selection+'_'+str(lumi),";#Delta Y;Events",100,0,4)
 		self.zp_eta = ROOT.TH1F("zp_eta_"+selection+'_'+str(lumi),";#eta_{t#bar{t}};Events",100,-5,5)
 		self.zp_phi = ROOT.TH1F("zp_phi_"+selection+'_'+str(lumi),";#phi_{t#bar{t}};Events",100,-4,4)
@@ -168,6 +176,8 @@ class histos:
 		self.top2_tau32.Sumw2()
 		self.top2_btag.Sumw2()
 		self.zp_m.Sumw2()
+		self.zp_m2.Sumw2()
+		self.zp_m3.Sumw2()
 		self.zp_dy.Sumw2()
 		self.zp_eta.Sumw2()
 		self.zp_phi.Sumw2()
@@ -202,6 +212,8 @@ class histos:
 		self.top2_tau32.Write(self.top2_tau32.GetName())
 		self.top2_btag.Write(self.top2_btag.GetName())
 		self.zp_m.Write(self.zp_m.GetName())
+		self.zp_m2.Write(self.zp_m.GetName())
+		self.zp_m3.Write(self.zp_m.GetName())
 		self.zp_dy.Write(self.zp_dy.GetName())
 		self.zp_eta.Write(self.zp_eta.GetName())
 		self.zp_phi.Write(self.zp_phi.GetName())
@@ -233,6 +245,8 @@ class histos:
 		self.top2_tau32.SaveAs('plots/'+self.top2_tau32.GetName()+'.pdf')
 		self.top2_btag.SaveAs('plots/'+self.top2_btag.GetName()+'.pdf')
 		self.zp_m.SaveAs('plots/'+self.zp_m.GetName()+'.pdf')
+		self.zp_m2.SaveAs('plots/'+self.zp_m.GetName()+'.pdf')
+		self.zp_m3.SaveAs('plots/'+self.zp_m.GetName()+'.pdf')
 		self.zp_dy.SaveAs('plots/'+self.zp_dy.GetName()+'.pdf')
 		self.zp_eta.SaveAs('plots/'+self.zp_eta.GetName()+'.pdf')
 		self.zp_phi.SaveAs('plots/'+self.zp_phi.GetName()+'.pdf')
@@ -268,6 +282,8 @@ class histos:
 		self.top2_tau32.Fill(event.top2_tau32,weight)
 		self.top2_btag.Fill(event.top2_btag,weight)
 		self.zp_m.Fill(event.zp_m,weight)
+		self.zp_m2.Fill(event.zp_m2,weight)
+		self.zp_m3.Fill(event.zp_m3,weight)
 		self.zp_dy.Fill(event.zp_dy,weight)
 		self.zp_eta.Fill(event.zp_eta,weight)
 		self.zp_phi.Fill(event.zp_phi,weight)
@@ -276,25 +292,25 @@ class histos:
 
 		if event.zp_dy>1.0:
 			if event.zp_btag==0:
-				self.zp_m_hdy_0b.Fill(event.zp_m,weight)
+				self.zp_m_hdy_0b.Fill(event.zp_m2,weight)
 			elif event.zp_btag==1:
-				self.zp_m_hdy_1b.Fill(event.zp_m,weight)
+				self.zp_m_hdy_1b.Fill(event.zp_m2,weight)
 			elif event.zp_btag==2:
-				self.zp_m_hdy_2b.Fill(event.zp_m,weight)
+				self.zp_m_hdy_2b.Fill(event.zp_m2,weight)
 		else:
 			if event.zp_btag==0:
-				self.zp_m_ldy_0b.Fill(event.zp_m,weight)
+				self.zp_m_ldy_0b.Fill(event.zp_m2,weight)
 			elif event.zp_btag==1:
-				self.zp_m_ldy_1b.Fill(event.zp_m,weight)
+				self.zp_m_ldy_1b.Fill(event.zp_m2,weight)
 			elif event.zp_btag==2:
-				self.zp_m_ldy_2b.Fill(event.zp_m,weight)
+				self.zp_m_ldy_2b.Fill(event.zp_m2,weight)
 
 		if event.zp_btag==0:
-			self.zp_m_0b.Fill(event.zp_m,weight)
+			self.zp_m_0b.Fill(event.zp_m2,weight)
 		elif event.zp_btag==1:
-			self.zp_m_1b.Fill(event.zp_m,weight)
+			self.zp_m_1b.Fill(event.zp_m2,weight)
 		elif event.zp_btag==2:
-			self.zp_m_2b.Fill(event.zp_m,weight)
+			self.zp_m_2b.Fill(event.zp_m2,weight)
 
 def doplots(sample):
 	out = ROOT.TFile('plots/outfile_'+filenames[sample]+'.root','RECREATE')
@@ -313,8 +329,8 @@ def doplots(sample):
 			print(legends[sample]+': '+"{:.2f}".format(cnt*100.0/lng)+'%'+' '*10,end='\r')
 			sys.stdout.flush()
 		#fill preselection
-		for j in target_lumi:
-			hist_dict['pre'][j].fill(event)
+		# for j in target_lumi:
+		# 	hist_dict['pre'][j].fill(event)
 
 		dphi=abs(event.top1_phi-event.top2_phi)
 		if dphi>3.14159:

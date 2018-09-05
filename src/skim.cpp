@@ -102,6 +102,8 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 	Double_t top2_tau32 = 0;
 	Int_t top2_btag;
 	Double_t zp_m = 0;
+	Double_t zp_m2 = 0;
+	Double_t zp_m3 = 0;
 	Double_t zp_dy = 0;
 	Double_t zp_eta = 0;
 	Double_t zp_phi = 0;
@@ -132,6 +134,8 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 	myskim->Branch("top2_tau32",&top2_tau32);
 	myskim->Branch("top2_btag",&top2_btag);
 	myskim->Branch("zp_m",&zp_m);
+	myskim->Branch("zp_m2",&zp_m2);
+	myskim->Branch("zp_m3",&zp_m3);
 	myskim->Branch("zp_dy",&zp_dy);
 	myskim->Branch("zp_eta",&zp_eta);
 	myskim->Branch("zp_phi",&zp_phi);
@@ -191,6 +195,8 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 		top2_tau32 = 0;
 		top2_btag = 0;
 		zp_m = 0;
+		zp_m2 = 0;
+		zp_m3 = 0;
 		zp_dy = 0;
 		zp_eta = 0;
 		zp_phi = 0;
@@ -206,31 +212,54 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 		// }
 		if (jets.size()<2) continue;
 		//ht
-		if (jets.at(0)->PT<400.0 ||
-			jets.at(1)->PT<400.0 ||
-			fabs(jets.at(0)->Eta)>4.0 ||
-			fabs(jets.at(1)->Eta)>4.0 ||
-			jets.at(0)->SoftDroppedJet.M()<50.0 ||
-			jets.at(1)->SoftDroppedJet.M()<50.0 
-			) continue;
+   		std::vector<Jet> good_jets;
+		for (unsigned int i = 0; i<jets.size(); i++)
+		{
+			if(jets.at(i)->PT>400.0 &&
+			fabs(jets.at(i)->Eta)<4.0 &&
+			jets.at(i)->SoftDroppedJet.M()>105.0 &&
+			jets.at(i)->SoftDroppedJet.M()<210.0 &&
+			jets.at(i)->Tau[2]/jets.at(i)->Tau[1]<0.65)
+			{
+				good_jets.push_back(*jets.at(i));
+			}
+			if (good_jets.size()>1) break;
+		}
+		if (good_jets.size()<2) continue;
 
-		//weight = weights.at(0)->Weight;
-		top1_pt = jets.at(0)->PT;
-		top1_eta = jets.at(0)->Eta;
-		top1_phi = jets.at(0)->Phi;
-		top1_sdmass = jets.at(0)->SoftDroppedJet.M();
-		top1_tau32 = jets.at(0)->Tau[2]/jets.at(0)->Tau[1];
-		top1_btag = jets.at(0)->BTag;
-		top2_pt = jets.at(1)->PT;
-		top2_eta = jets.at(1)->Eta;
-		top2_phi = jets.at(1)->Phi;
-		top2_sdmass = jets.at(1)->SoftDroppedJet.M();
-		top2_tau32 = jets.at(1)->Tau[2]/jets.at(1)->Tau[1];
-		top2_btag = jets.at(1)->BTag;
-		TLorentzVector zprime(jets.at(0)->P4()+jets.at(1)->P4());
+		// if (jets.at(0)->PT<400.0 ||
+		// 	jets.at(1)->PT<400.0 ||
+		// 	fabs(jets.at(0)->Eta)>4.0 ||
+		// 	fabs(jets.at(1)->Eta)>4.0 ||
+		// 	jets.at(0)->SoftDroppedJet.M()<50.0 ||
+		// 	jets.at(1)->SoftDroppedJet.M()<50.0 
+		// 	) continue;
+
+		weight = weights.at(0)->Weight;
+		top1_pt = good_jets.at(0).PT;
+		top1_eta = good_jets.at(0).Eta;
+		top1_phi = good_jets.at(0).Phi;
+		top1_sdmass = good_jets.at(0).SoftDroppedJet.M();
+		top1_tau32 = good_jets.at(0).Tau[2]/good_jets.at(0).Tau[1];
+		top1_btag = good_jets.at(0).BTag;
+		top2_pt = good_jets.at(1).PT;
+		top2_eta = good_jets.at(1).Eta;
+		top2_phi = good_jets.at(1).Phi;
+		top2_sdmass = good_jets.at(1).SoftDroppedJet.M();
+		top2_tau32 = good_jets.at(1).Tau[2]/good_jets.at(1).Tau[1];
+		top2_btag = good_jets.at(1).BTag;
+		TLorentzVector zprime(good_jets.at(0).P4()+good_jets.at(1).P4());
+		TLorentzVector zprime2(good_jets.at(0).SoftDroppedJet+good_jets.at(1).SoftDroppedJet);
+		TLorentzVector top1_mix;
+		TLorentzVector top2_mix;
+		top1_mix.SetPtEtaPhiM(good_jets.at(0).PT, good_jets.at(0).Eta, good_jets.at(0).Phi, good_jets.at(0).SoftDroppedJet.M() ) ;
+		top2_mix.SetPtEtaPhiM(good_jets.at(1).PT, good_jets.at(1).Eta, good_jets.at(1).Phi, good_jets.at(1).SoftDroppedJet.M() ) ;
+		TLorentzVector zprime3(top1_mix+top2_mix);
 
 		zp_m = zprime.M();
-		zp_dy = fabs(jets.at(0)->P4().Rapidity()-jets.at(1)->P4().Rapidity());
+		zp_m2 = zprime2.M();
+		zp_m3 = zprime3.M();
+		zp_dy = fabs(good_jets.at(0).P4().Rapidity()-good_jets.at(1).P4().Rapidity());
 		zp_eta = zprime.Eta();
 		zp_phi = zprime.Phi();
 		zp_pt = zprime.Pt();
