@@ -108,8 +108,11 @@ model_summary(model)
 #plot_exp,plot_obs = asymptotic_cls_limits(model,use_data=False)
 
 plot_exp, plot_obs = bayesian_limits(model,what='expected')#,n_toy = 2000, n_data = 20)
-plot_exp.write_txt('/uscms_data/d3/eusai/danalysis/zp/plots/theta_new_'+lumi+'.txt')
-report.write_html('/uscms_data/d3/eusai/danalysis/zp/plots/theta_new_'+lumi)
+# plot_exp.write_txt('/uscms_data/d3/eusai/danalysis/zp/plots/theta_new_'+lumi+'.txt')
+# report.write_html('/uscms_data/d3/eusai/danalysis/zp/plots/theta_new_'+lumi)
+
+plot_exp.write_txt('/uscms_data/d3/eusai/danalysis/zp/plots/theta_'+lumi+'.txt')
+report.write_html('/uscms_data/d3/eusai/danalysis/zp/plots/theta_'+lumi)
 
 # plot_exp.write_txt('/uscms_data/d3/eusai/danalysis/zp/plots/rsg.txt')
 # report.write_html('/uscms_data/d3/eusai/danalysis/zp/plots/rsg')

@@ -2,7 +2,7 @@ from __future__ import print_function
 from multiprocessing import Pool
 import sys
 import ROOT
-from ROOT import TFile,TCanvas,gROOT,gStyle,TLegend,TGraphAsymmErrors,THStack,TIter,kRed,kYellow,kGray,kBlack,TLatex,kOrange,kAzure,TLine,kWhite,kBlue,kTRUE,kFALSE,TColor
+from ROOT import TFile,TCanvas,gROOT,gStyle,TLegend,TGraphAsymmErrors,THStack,TIter,kGreen,kRed,kYellow,kGray,kBlack,TLatex,kOrange,kAzure,TLine,kWhite,kBlue,kTRUE,kFALSE,TColor
 import CMS_lumi
 import math
 ROOT.gROOT.SetBatch()
@@ -11,13 +11,13 @@ hexcolor=["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e3
 intcolor=[TColor.GetColor(i) for i in hexcolor]
 
 filenames = [
-'rsg2',
-'rsg3',
-'rsg4',
-'rsg5',
-'rsg6',
-'ttbar',
-'qcd'
+'rsg2nn',
+'rsg3nn',
+'rsg4nn',
+'rsg5nn',
+'rsg6nn',
+'ttbarnn',
+'qcdnn'
 ]
 
 legends = [
@@ -36,8 +36,8 @@ nevts=[
 399990,
 399989,
 399987,
-12769661,
-19713175
+12736291,#16.810596*10000000,
+19619567#19619788
 ]
 
 xsecs=[
@@ -46,7 +46,7 @@ xsecs=[
 1000,
 1000,
 1000,
-21270,
+21270,# 864600,
 1174000
 ]
 
@@ -68,7 +68,7 @@ False,
 False,
 False,
 False,
-True,
+False,
 False
 ]
 
@@ -212,8 +212,8 @@ class histos:
 		self.top2_tau32.Write(self.top2_tau32.GetName())
 		self.top2_btag.Write(self.top2_btag.GetName())
 		self.zp_m.Write(self.zp_m.GetName())
-		self.zp_m2.Write(self.zp_m.GetName())
-		self.zp_m3.Write(self.zp_m.GetName())
+		self.zp_m2.Write(self.zp_m2.GetName())
+		self.zp_m3.Write(self.zp_m3.GetName())
 		self.zp_dy.Write(self.zp_dy.GetName())
 		self.zp_eta.Write(self.zp_eta.GetName())
 		self.zp_phi.Write(self.zp_phi.GetName())
@@ -245,8 +245,8 @@ class histos:
 		self.top2_tau32.SaveAs('plots/'+self.top2_tau32.GetName()+'.pdf')
 		self.top2_btag.SaveAs('plots/'+self.top2_btag.GetName()+'.pdf')
 		self.zp_m.SaveAs('plots/'+self.zp_m.GetName()+'.pdf')
-		self.zp_m2.SaveAs('plots/'+self.zp_m.GetName()+'.pdf')
-		self.zp_m3.SaveAs('plots/'+self.zp_m.GetName()+'.pdf')
+		self.zp_m2.SaveAs('plots/'+self.zp_m2.GetName()+'.pdf')
+		self.zp_m3.SaveAs('plots/'+self.zp_m3.GetName()+'.pdf')
 		self.zp_dy.SaveAs('plots/'+self.zp_dy.GetName()+'.pdf')
 		self.zp_eta.SaveAs('plots/'+self.zp_eta.GetName()+'.pdf')
 		self.zp_phi.SaveAs('plots/'+self.zp_phi.GetName()+'.pdf')
@@ -338,7 +338,7 @@ def doplots(sample):
 		#fill selection
 		if (event.top1_sdmass>105 and event.top1_sdmass<210 and #mass top1
 			event.top2_sdmass>105 and event.top2_sdmass<210 and #mass top2
-			event.top1_pt+event.top2_pt>1000 and dphi>2.1 and#trigger+dphi
+			event.top1_pt+event.top2_pt>800 and dphi>2.1 and#trigger+dphi
 
 			event.top1_tau32<0.65 and event.top2_tau32<0.65): #nsub top1+top2
 			for j in target_lumi:
@@ -388,15 +388,15 @@ def make_ratioplot(name, ttbar_file=0, qcd_file=0, signal_files=[], histo=0,rebi
   qcd_histo.Rebin(rebin)
   ttbar_histo=ttbar_file.Get(histo).Clone()
   ttbar_histo.Rebin(rebin)
-  ttbar_histo.SetFillColor(kAzure)
-  ttbar_histo.SetLineColor(kAzure)
-  ttbar_histo.SetMarkerColor(kAzure)
+  ttbar_histo.SetFillColor(kRed-9)
+  ttbar_histo.SetLineColor(kRed-9)
+  ttbar_histo.SetMarkerColor(kRed-9)
   if ttbar_zoom!=1:
     ttbar_histo.Scale(ttbar_zoom)  
   legend.AddEntry(ttbar_histo,ttbar_legend,'f')
-  qcd_histo.SetFillColor(kOrange)
-  qcd_histo.SetLineColor(kOrange)
-  qcd_histo.SetMarkerColor(kOrange)
+  qcd_histo.SetFillColor(kOrange-5)
+  qcd_histo.SetLineColor(kOrange-5)
+  qcd_histo.SetMarkerColor(kOrange-5)
   if qcd_zoom!=1:
       qcd_histo.Scale(qcd_zoom)
   legend.AddEntry(qcd_histo,qcd_legend,'f')
@@ -420,8 +420,8 @@ def make_ratioplot(name, ttbar_file=0, qcd_file=0, signal_files=[], histo=0,rebi
 
   ###signal setting up
   signal_histos=[]
-  colors=[30,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60]
-  styles=[5,7,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+  colors=[kBlack,kRed,kOrange,kBlue,kGreen+3,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60]
+  styles=[1,3,5,7,7,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
   if signal_colors!=[]:
     colors=signal_colors
   for i in range(len(signal_files)):

@@ -1,0 +1,22 @@
+[config-begin]
+
+    Outputdir  = output
+    Outputfile = outputfile_ttbar4p.root
+    Lumi       = 3000  
+    Testmode   = false
+    Maxchilds  = 12
+    Samplesdir = root://cms-xrd-global.cern.ch//store/group/upgrade/delphes_output/YR_Delphes/Delphes342pre15/TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_200PU/
+    RunOnOutputOnly = false
+
+[config-end]
+
+
+
+[inputfiles-begin]
+
+$Failed inputs from the other configs:
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_122_0.root,  ttbar4p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_422_0.root,  ttbar4p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_33_0.root,  ttbar4p,  1, 1,  auto, 1, true
+
+[inputfiles-end]

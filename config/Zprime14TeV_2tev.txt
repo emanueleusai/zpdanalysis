@@ -1,0 +1,30 @@
+[config-begin]
+
+    Outputdir  = output
+    Outputfile = outputfile_2tev.root
+    Lumi       = 3000  
+    Testmode   = false
+    Maxchilds  = 12
+    Samplesdir = root://cms-xrd-global.cern.ch//store/group/upgrade/delphes_output/YR_Delphes/Delphes342pre15/RSGluonToTTbar_M2000_TuneCUEP8M1_14TeV_pythia8_200PU/
+    RunOnOutputOnly = false
+
+[config-end]
+
+
+
+[inputfiles-begin]
+
+RSGluonToTTbar_M2000_TuneCUEP8M1_14TeV_pythia8_1_0.root,  2tev,  1, 1,  auto, 1, true
+RSGluonToTTbar_M2000_TuneCUEP8M1_14TeV_pythia8_1_1.root,  2tev,  1, 1,  auto, 1, true
+RSGluonToTTbar_M2000_TuneCUEP8M1_14TeV_pythia8_2_0.root,  2tev,  1, 1,  auto, 1, true
+RSGluonToTTbar_M2000_TuneCUEP8M1_14TeV_pythia8_3_0.root,  2tev,  1, 1,  auto, 1, true
+RSGluonToTTbar_M2000_TuneCUEP8M1_14TeV_pythia8_3_1.root,  2tev,  1, 1,  auto, 1, true
+RSGluonToTTbar_M2000_TuneCUEP8M1_14TeV_pythia8_4_0b.root,  2tev,  1, 1,  auto, 1, true
+RSGluonToTTbar_M2000_TuneCUEP8M1_14TeV_pythia8_4_0.root,  2tev,  1, 1,  auto, 1, true
+RSGluonToTTbar_M2000_TuneCUEP8M1_14TeV_pythia8_4_1.root,  2tev,  1, 1,  auto, 1, true
+RSGluonToTTbar_M2000_TuneCUEP8M1_14TeV_pythia8_5_0.root,  2tev,  1, 1,  auto, 1, true
+RSGluonToTTbar_M2000_TuneCUEP8M1_14TeV_pythia8_5_1.root,  2tev,  1, 1,  auto, 1, true
+RSGluonToTTbar_M2000_TuneCUEP8M1_14TeV_pythia8_6_0.root,  2tev,  1, 1,  auto, 1, true
+RSGluonToTTbar_M2000_TuneCUEP8M1_14TeV_pythia8_6_1.root,  2tev,  1, 1,  auto, 1, true
+
+[inputfiles-end]

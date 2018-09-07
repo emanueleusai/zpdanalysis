@@ -1,0 +1,156 @@
+[config-begin]
+
+    Outputdir  = output
+    Outputfile = outputfile_ttbar0p.root
+    Lumi       = 3000  
+    Testmode   = false
+    Maxchilds  = 12
+    Samplesdir = root://cms-xrd-global.cern.ch//store/group/upgrade/delphes_output/YR_Delphes/Delphes342pre15/TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_200PU/
+    RunOnOutputOnly = false
+
+[config-end]
+
+
+
+[inputfiles-begin]
+
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_100_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_10_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_101_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_102_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_103_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_104_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_105_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_106_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_107_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_108_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_109_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_1_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_110_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_11_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_111_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_112_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_113_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_114_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_115_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_116_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_117_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_118_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_119_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_120_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_12_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_121_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_122_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_123_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_124_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_125_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_126_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_127_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_128_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_129_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_130_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_13_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_131_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_132_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_133_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_134_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_135_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_136_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_137_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_138_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_139_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_140_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_14_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_141_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_142_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_143_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_144_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_145_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_146_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_147_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_148_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_149_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_150_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_15_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_151_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_152_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_153_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_154_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_155_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_156_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_157_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_158_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_159_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_160_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_16_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_161_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_162_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_163_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_164_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_165_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_166_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_167_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_168_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_169_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_170_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_17_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_171_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_172_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_173_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_174_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_175_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_176_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_177_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_178_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_179_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_180_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_18_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_181_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_182_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_183_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_184_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_185_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_186_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_187_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_188_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_189_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_190_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_19_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_191_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_192_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_193_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_194_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_195_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_196_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_197_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_198_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_199_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_200_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_20_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_201_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_202_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_203_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_204_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_205_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_206_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_207_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_208_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_209_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_2_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_210_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_21_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_211_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_212_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_213_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_214_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_215_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_216_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_217_0b.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_217_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_218_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_219_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_220_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_22_0.root,  ttbar0p,  1, 1,  auto, 1, true
+TT_Mtt1000toInf_TuneCUETP8M1_14TeV-powheg-pythia8_221_0.root,  ttbar0p,  1, 1,  auto, 1, true
+
+[inputfiles-end]

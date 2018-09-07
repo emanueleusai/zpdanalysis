@@ -1,0 +1,5 @@
+#./skim config/Zprime14TeV_2tev.txt
+#./skim config/Zprime14TeV_3tev.txt
+./skim config/Zprime14TeV_4tev.txt
+./skim config/Zprime14TeV_5tev.txt
+./skim config/Zprime14TeV_6tev.txt

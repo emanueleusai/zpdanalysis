@@ -47,6 +47,7 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 //	d_ana::dBranchHandler<Jet>         genjet(tree(),"GenJet");
 	d_ana::dBranchHandler<Weight>      weights(tree(),"Weight");
 	d_ana::dBranchHandler<Jet>         jets(tree(),"JetPUPPIAK8");
+	d_ana::dBranchHandler<Jet>         small_jets(tree(),"JetPUPPI");
 //	d_ana::dBranchHandler<Muon>        muontight(tree(),"MuonTight");
 //	d_ana::dBranchHandler<Muon>        muonloose(tree(),"MuonLoose");
 //	d_ana::dBranchHandler<Photon>      photon(tree(),"Photon");
@@ -75,7 +76,7 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 	 * Always use this function to add a new histogram (can also be 2D)!
 	 * Histograms created this way are automatically added to the output file
 	 */
-//	TH1* histo=addPlot(new TH1D("histoname1","histotitle1",100,0,100),"p_{T} [GeV]","N_{e}");
+	TH1* histo=addPlot(new TH1D("count","count",1,0,1),"count","events");
 
 
 	/*
@@ -161,7 +162,7 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 		reportStatus(eventno,nevents);
 		tree()->setEntry(eventno);
 
-
+		histo->Fill(0.5);
 
 		// /*
 		//  * Begin the event-by-event analysis
@@ -213,6 +214,7 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 		if (jets.size()<2) continue;
 		//ht
    		std::vector<Jet> good_jets;
+   		std::vector<int> btags;
 		for (unsigned int i = 0; i<jets.size(); i++)
 		{
 			if(jets.at(i)->PT>400.0 &&
@@ -222,6 +224,17 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 			jets.at(i)->Tau[2]/jets.at(i)->Tau[1]<0.65)
 			{
 				good_jets.push_back(*jets.at(i));
+				int btag=0;
+				for (unsigned int j = 0; j<small_jets.size(); j++)
+				{
+					if (jets.at(i)->P4().DeltaR(small_jets.at(j)->P4())<0.8 && (small_jets.at(j)->BTag & (1 << 1) ) )
+					{
+						btag=1;
+						break;
+					}
+				}
+				btags.push_back(btag);
+				//std::cout<<jets.at(i)->Flavor<<" "<<jets.at(i)->BTag<<" "<<btag<<std::endl;
 			}
 			if (good_jets.size()>1) break;
 		}
@@ -235,19 +248,19 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 		// 	jets.at(1)->SoftDroppedJet.M()<50.0 
 		// 	) continue;
 
-		weight = weights.at(0)->Weight;
+		//weight = weights.at(0)->Weight;
 		top1_pt = good_jets.at(0).PT;
 		top1_eta = good_jets.at(0).Eta;
 		top1_phi = good_jets.at(0).Phi;
 		top1_sdmass = good_jets.at(0).SoftDroppedJet.M();
 		top1_tau32 = good_jets.at(0).Tau[2]/good_jets.at(0).Tau[1];
-		top1_btag = good_jets.at(0).BTag;
+		top1_btag = btags.at(0);
 		top2_pt = good_jets.at(1).PT;
 		top2_eta = good_jets.at(1).Eta;
 		top2_phi = good_jets.at(1).Phi;
 		top2_sdmass = good_jets.at(1).SoftDroppedJet.M();
 		top2_tau32 = good_jets.at(1).Tau[2]/good_jets.at(1).Tau[1];
-		top2_btag = good_jets.at(1).BTag;
+		top2_btag = btags.at(1);
 		TLorentzVector zprime(good_jets.at(0).P4()+good_jets.at(1).P4());
 		TLorentzVector zprime2(good_jets.at(0).SoftDroppedJet+good_jets.at(1).SoftDroppedJet);
 		TLorentzVector top1_mix;

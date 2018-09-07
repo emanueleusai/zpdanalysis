@@ -1,0 +1,149 @@
+[config-begin]
+
+    Outputdir  = output
+    Outputfile = outputfile_qcd3p.root
+    Lumi       = 3000  
+    Testmode   = false
+    Maxchilds  = 12
+    Samplesdir = root://cms-xrd-global.cern.ch//store/group/upgrade/delphes_output/YR_Delphes/Delphes342pre14/QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_200PU/
+    RunOnOutputOnly = false
+
+[config-end]
+
+
+
+[inputfiles-begin]
+
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_466_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_467_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_468_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_469_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_470_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_47_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_471_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_472_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_473_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_474_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_475_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_476_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_477_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_478_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_479_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_480_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_48_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_481_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_482_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_483_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_484_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_485_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_486_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_487_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_488_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_490_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_49_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_491_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_492_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_493_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_494_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_495_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_496_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_497_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_498_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_499_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_500_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_50_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_501_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_502_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_504_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_505_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_507_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_508_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_5_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_51_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_511_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_512_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_513_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_514_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_515_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_516_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_517_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_518_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_519_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_520_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_52_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_521_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_522_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_523_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_524_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_525_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_526_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_527_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_529_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_530_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_53_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_531_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_532_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_533_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_534_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_535_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_536_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_537_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_538_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_539_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_540_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_54_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_541_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_542_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_543_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_544_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_545_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_546_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_547_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_548_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_549_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_550_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_55_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_551_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_552_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_553_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_554_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_555_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_556_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_557_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_558_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_559_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_560_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_56_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_561_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_562_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_563_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_564_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_565_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_566_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_567_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_568_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_569_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_570_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_57_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_571_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_572_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_573_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_574_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_575_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_576_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_577_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_578_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_579_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_580_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_58_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_581_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_582_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_583_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_584_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_585_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_586_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_587_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_588_0.root,  qcd3p,  1, 1,  auto, 1, true
+QCD_Mdijet-1000toInf_TuneCUETP8M1_14TeV-pythia8_589_0.root,  qcd3p,  1, 1,  auto, 1, true
+
+[inputfiles-end]
