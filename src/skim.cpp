@@ -7,6 +7,57 @@
 
 #include "interface/skim.h"
 
+#include "TRandom3.h"  
+TRandom3* r = new TRandom3();
+ double getEff_b(double ptin, double etain, const int pu) {
+
+  double pt=0.,eta=0.,ptwidth=0.,etawidth=0.,eff=0.; 
+    
+   etain = abs(etain);
+    if (ptin > 3000.) ptin = 2999.99;
+
+    TFile f("beff_200PU_WPM.root");
+     TH1F *heff = (TH1F*)f.Get("heff");
+      int x_range=(heff->GetNbinsX());
+       int y_range=(heff->GetNbinsY());
+           for(int i=1; i < x_range+1; i++){
+             for(int j=1; j < y_range+1; j++){
+                pt= heff->GetXaxis()->GetBinLowEdge(i);
+                 eta= heff->GetYaxis()->GetBinLowEdge(j);
+            ptwidth  = heff->GetXaxis()->GetBinWidth(i);
+             etawidth = heff->GetYaxis()->GetBinWidth(j);
+               if (pt <= ptin && ptin < (pt+ptwidth)){
+          if (eta <= etain && etain < (eta+etawidth)){
+                     eff=heff->GetBinContent(i,j);
+                                }
+                                     }
+                                               }
+                                      }
+                                                                                                                                                     return eff; 
+                                                                                                                                                        }
+ 
+ bool isBTagged(const double pt, const double eta, const int pu, const int fl) {
+  bool isBTagged(0);
+ 
+   if (fl == 5) {
+     double eff = getEff_b(pt, eta, pu);  
+     double rand = r->Rndm();
+
+   if (eff > rand) isBTagged = 1;
+     else isBTagged = 0;
+   }
+ 
+ else 
+ { 
+    double rand = r->Rndm();
+
+  if (0.01 > rand) isBTagged = 1;   // mistag eff = 0.01
+     else isBTagged = 0;
+  }
+
+  return isBTagged;
+
+ } 
 
 
 void skim::analyze(size_t childid /* this info can be used for printouts */){
@@ -43,15 +94,18 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 	 */
 	//
 //	d_ana::dBranchHandler<HepMCEvent>  event(tree(),"Event");
-//	d_ana::dBranchHandler<GenParticle> genpart(tree(),"Particle");
+	d_ana::dBranchHandler<GenParticle> genpart(tree(),"Particle");
 //	d_ana::dBranchHandler<Jet>         genjet(tree(),"GenJet");
 	d_ana::dBranchHandler<Weight>      weights(tree(),"Weight");
 	d_ana::dBranchHandler<Jet>         jets(tree(),"JetPUPPIAK8");
-	d_ana::dBranchHandler<Jet>         small_jets(tree(),"JetPUPPI");
+//	d_ana::dBranchHandler<Jet>         small_jets(tree(),"JetPUPPI");
 //	d_ana::dBranchHandler<Muon>        muontight(tree(),"MuonTight");
 //	d_ana::dBranchHandler<Muon>        muonloose(tree(),"MuonLoose");
 //	d_ana::dBranchHandler<Photon>      photon(tree(),"Photon");
 //	d_ana::dBranchHandler<MissingET>   met(tree(),"MissingET");
+
+	const int pu = 200;
+        int sj00BTagged, sj10BTagged, sj01BTagged, sj11BTagged;
 
 
 	/* ==SKIM==
@@ -110,8 +164,9 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 	Double_t zp_phi = 0;
 	Double_t zp_pt = 0;
 	Double_t zp_btag = 0;
+	Double_t zp_m_gen = 0;
 
-	Double_t weight = 1;
+//	Double_t weight = 1;
 
 	// Double_t met = 0;
 	// Double_t met_eta = 0;
@@ -120,7 +175,7 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 	// Double_t met_t = 0;
 	// Double_t met_p = 0;
 
-	myskim->Branch("weight",&weight);
+//	myskim->Branch("weight",&weight);
 
 	myskim->Branch("top1_pt",&top1_pt);
 	myskim->Branch("top1_eta",&top1_eta);
@@ -142,6 +197,7 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 	myskim->Branch("zp_phi",&zp_phi);
 	myskim->Branch("zp_pt",&zp_pt);
 	myskim->Branch("zp_btag",&zp_btag);
+	myskim->Branch("zp_m_gen",&zp_m_gen);
 
 	/*
 	 * Or store a vector of objects (also possible to store only one object)
@@ -204,7 +260,8 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 		zp_pt = 0;
 		zp_btag = 0;
 
-		weight = 1;
+		//weight = 1;
+		zp_m_gen = 0;
 
 		//std::cout<<jets.size()<<std::endl;
 		// for (int i =0; i<jets.size(); i++)
@@ -224,17 +281,17 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 			jets.at(i)->Tau[2]/jets.at(i)->Tau[1]<0.65)
 			{
 				good_jets.push_back(*jets.at(i));
-				int btag=0;
-				for (unsigned int j = 0; j<small_jets.size(); j++)
-				{
-					if (jets.at(i)->P4().DeltaR(small_jets.at(j)->P4())<0.8 && (small_jets.at(j)->BTag & (1 << 1) ) )
-					{
-						btag=1;
-						break;
-					}
-				}
-				btags.push_back(btag);
-				//std::cout<<jets.at(i)->Flavor<<" "<<jets.at(i)->BTag<<" "<<btag<<std::endl;
+	//			int btag=0;
+	//			for (unsigned int j = 0; j<small_jets.size(); j++)
+	//			{
+	//				if (jets.at(i)->P4().DeltaR(small_jets.at(j)->P4())<0.8 && (small_jets.at(j)->BTag & (1 << 1) ) )
+	//				{
+	//					btag=1;
+	//					break;
+	//				}
+	//			}
+	//			btags.push_back(btag);
+	//			//std::cout<<jets.at(i)->Flavor<<" "<<jets.at(i)->BTag<<" "<<btag<<std::endl;
 			}
 			if (good_jets.size()>1) break;
 		}
@@ -249,18 +306,33 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 		// 	) continue;
 
 		//weight = weights.at(0)->Weight;
+		
+		 // subjet Btagging
+  	TLorentzVector p4_sj0_ak8jet0(good_jets.at(0).SoftDroppedP4[1]);
+           TLorentzVector p4_sj0_ak8jet1(good_jets.at(1).SoftDroppedP4[1]);
+          TLorentzVector p4_sj1_ak8jet0(good_jets.at(0).SoftDroppedP4[2]);
+           TLorentzVector p4_sj1_ak8jet1(good_jets.at(1).SoftDroppedP4[2]);
+		
+	sj00BTagged =  int(isBTagged(p4_sj0_ak8jet0.Pt(), p4_sj0_ak8jet0.Eta(), pu, good_jets.at(0).Flavor ));
+       sj10BTagged =  int(isBTagged(p4_sj1_ak8jet0.Pt(), p4_sj1_ak8jet0.Eta(), pu, good_jets.at(0).Flavor ));
+          sj01BTagged =  int(isBTagged(p4_sj0_ak8jet1.Pt(), p4_sj0_ak8jet1.Eta(), pu, good_jets.at(1).Flavor ));
+         sj11BTagged =  int(isBTagged(p4_sj1_ak8jet1.Pt(), p4_sj1_ak8jet1.Eta(), pu, good_jets.at(1).Flavor ));
+
+		
 		top1_pt = good_jets.at(0).PT;
 		top1_eta = good_jets.at(0).Eta;
 		top1_phi = good_jets.at(0).Phi;
 		top1_sdmass = good_jets.at(0).SoftDroppedJet.M();
 		top1_tau32 = good_jets.at(0).Tau[2]/good_jets.at(0).Tau[1];
-		top1_btag = btags.at(0);
+	//	top1_btag = btags.at(0);
+		 if ( sj00BTagged + sj10BTagged >=1) { top1_btag = 1;}
 		top2_pt = good_jets.at(1).PT;
 		top2_eta = good_jets.at(1).Eta;
 		top2_phi = good_jets.at(1).Phi;
 		top2_sdmass = good_jets.at(1).SoftDroppedJet.M();
 		top2_tau32 = good_jets.at(1).Tau[2]/good_jets.at(1).Tau[1];
-		top2_btag = btags.at(1);
+	//	top2_btag = btags.at(1);
+		if ( sj01BTagged + sj11BTagged >=1) { top2_btag = 1;}
 		TLorentzVector zprime(good_jets.at(0).P4()+good_jets.at(1).P4());
 		TLorentzVector zprime2(good_jets.at(0).SoftDroppedJet+good_jets.at(1).SoftDroppedJet);
 		TLorentzVector top1_mix;
@@ -284,6 +356,14 @@ void skim::analyze(size_t childid /* this info can be used for printouts */){
 
 		// }
 
+		for (unsigned int i=0;i<genpart.size();i++)
+		{
+			if (genpart.at(i)->PID==5100021)
+			{
+				zp_m_gen= genpart.at(i)->Mass;
+				break;
+			}
+ 		}
 
 
 
