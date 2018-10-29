@@ -20,6 +20,9 @@ filenames = [
 'qcdnn'
 ]
 
+filenames_up = [filenames[i]+'_up' for i in range(len(filenames))]
+filenames_down = [filenames[i]+'_down' for i in range(len(filenames))]
+
 legends = [
 'm_{g} = 2 TeV',
 'm_{g} = 3 TeV',
@@ -312,9 +315,9 @@ class histos:
 		elif event.zp_btag==2:
 			self.zp_m_2b.Fill(event.zp_m2,weight)
 
-def doplots(sample):
-	out = ROOT.TFile('plots/outfile_'+filenames[sample]+'.root','RECREATE')
-	f = ROOT.TFile.Open(folder+filenames[sample]+'.root')
+def doplots(sample,filenames_tmp):
+	out = ROOT.TFile('plots/outfile_'+filenames_tmp[sample]+'.root','RECREATE')
+	f = ROOT.TFile.Open(folder+filenames_tmp[sample]+'.root')
 
 	hist_dict={}
 	for i in selections:
@@ -740,11 +743,15 @@ if __name__ == '__main__':
 
 	if histo_factory:
 		p = Pool(len(filenames))
-		print(p.map(doplots, range(len(filenames))))
+		print(p.map(doplots, range(len(filenames)))*3,[filenames]*len(filenames)+[filenames_up]*len(filenames)+[filenames_down]*len(filenames))
 
 	files=[]
+	files_up=[]
+	files_down=[]
 	for sample in range(len(filenames)):
 		files.append(ROOT.TFile('plots/outfile_'+filenames[sample]+'.root',"READ"))
+		files_up.append(ROOT.TFile('plots/outfile_'+filenames_up[sample]+'.root',"READ"))
+		files_down.append(ROOT.TFile('plots/outfile_'+filenames_down[sample]+'.root',"READ"))
 
 
 	if stacking:
@@ -830,6 +837,14 @@ if __name__ == '__main__':
 					the_plot=files[sample].Get(categories[cat]+'_full_'+str(target_lumi[lumi])).Clone()
 					the_plot.Rebin(2)
 					the_plot.Write(categories_names[cat]+'__'+filenames[sample])
+
+					the_plot_up=files_up[sample].Get(categories[cat]+'_full_'+str(target_lumi[lumi])).Clone()
+					the_plot_up.Rebin(2)
+					the_plot_up.Write(categories_names[cat]+'__'+filenames[sample]+'__jec__up')
+
+					the_plot_down=files_down[sample].Get(categories[cat]+'_full_'+str(target_lumi[lumi])).Clone()
+					the_plot_down.Rebin(2)
+					the_plot_down.Write(categories_names[cat]+'__'+filenames[sample]+'__jec__down')
 			template.Close()
 
 # 	from ROOT import TGraph
